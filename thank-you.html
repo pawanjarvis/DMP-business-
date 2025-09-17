@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful - DMP Business</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+        }
+        
+        .register-btn {
+            background: #28a745;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .register-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Thank You Container */
+        .thankyou-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        /* Thank You Card */
+        .thankyou-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .thankyou-header {
+            margin-bottom: 2rem;
+        }
+        
+        .thankyou-header h1 {
+            color: #28a745;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .thankyou-header p {
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .user-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .user-details h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .detail-row {
+            display: flex;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.8rem;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 120px;
+        }
+        
+        .detail-value {
+            color: #666;
+            flex: 1;
+        }
+        
+        .login-btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,123,255,0.3);
+        }
+        
+        /* Features Side */
+        .features-side {
+            color: white;
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        .features-side h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            flex: 1;
+            min-width: 250px;
+            max-width: 280px;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-text h4 {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .feature-text p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(51, 51, 51, 0.95);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .thankyou-container {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .thankyou-card {
+                padding: 2rem;
+            }
+            
+            .thankyou-header h1 {
+                font-size: 2rem;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            .detail-label {
+                min-width: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .thankyou-card {
+                padding: 1.5rem;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .feature-item {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DMP Business</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="registration.html">Register</a>
+                <a href="billing.html">Billing</a>
+                <a href="contact.html">Contact</a>
+                <a href="registration.html" class="register-btn">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Thank You Container -->
+    <div class="thankyou-container">
+        <!-- Thank You Card -->
+        <div class="thankyou-card">
+            <div class="thankyou-header">
+                <h1>Registration Successful!</h1>
+                <p>Thank you for registering with DMP Business. Your account has been created successfully.</p>
+            </div>
+            
+            <div class="user-details">
+                <h3>Your Account Details</h3>
+                <div class="detail-row">
+                    <span class="detail-label">Name:</span>
+                    <span class="detail-value" id="user-name">Rahul Sharma</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Mobile:</span>
+                    <span class="detail-value" id="user-mobile">9919559898</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value" id="user-email">rahul@example.com</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Address:</span>
+                    <span class="detail-value" id="user-address">Uttar Pradesh, India</span>
+                </div>
+            </div>
+            
+            <p>You can now login to your account and start using our services.</p>
+            <a href="login.html" class="login-btn">Login Now</a>
+        </div>
+
+        <!-- Features Side -->
+        <div class="features-side">
+            <h2>What You Can Do Now</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-text">
+                        <h4>Access Dashboard</h4>
+                        <p>Manage your business from one place</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🧾</div>
+                    <div class="feature-text">
+                        <h4>Generate Bills</h4>
+                        <p>Create professional invoices instantly</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h4>View Reports</h4>
+                        <p>Track your business performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>DMP Business</h3>
+            <p>Professional billing solutions for modern businesses</p>
+            
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            
+            <p>📞 Phone: 9919559898 | 📧 Email: support@dmpbusiness.com</p>
+            <p>📍 Address: DMP Business Pvt Ltd, Uttar Pradesh, India</p>
+            
+            <p style="margin-top: 1.5rem;">&copy; 2024 DMP Business. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Extract URL parameters and populate user details
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.has('name')) {
+                document.getElementById('user-name').textContent = decodeURIComponent(urlParams.get('name'));
+            }
+            if (urlParams.has('mobile')) {
+                document.getElementById('user-mobile').textContent = decodeURIComponent(urlParams.get('mobile'));
+            }
+            if (urlParams.has('email')) {
+                document.getElementById('user-email').textContent = decodeURIComponent(urlParams.get('email'));
+            }
+            if (urlParams.has('address')) {
+                document.getElementById('user-address').textContent = decodeURIComponent(urlParams.get('address'));
+            }
+        });
+    </script>
+</body>
+</html>

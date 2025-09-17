@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - DMP Business</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+    <!-- registration.html के form में -->
+<form action="registration.php" method="POST" onsubmit="return debugForm()">
+
+<script>
+function debugForm() {
+    // Form data console पर print करें
+    console.log("Form submitted with data:");
+    console.log("Name:", document.getElementById('name').value);
+    console.log("Mobile:", document.getElementById('mobile').value);
+    return true;
+}
+</script>
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+        }
+        
+        .login-btn {
+            background: #007bff;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Registration Section */
+        .registration-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .registration-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .registration-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .registration-header h1 {
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .registration-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,123,255,0.3);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+        
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-item {
+            text-align: center;
+            color: white;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(51, 51, 51, 0.95);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .registration-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .registration-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .registration-card {
+                padding: 1.5rem;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+            }
+            
+            .submit-btn {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DMP Business</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="registration.html">Register</a>
+                <a href="billing.html">Billing</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="login-btn">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Section -->
+    <div class="registration-container">
+        <div class="registration-card">
+            <div class="registration-header">
+                <h1>Create Account</h1>
+                <p>Join thousands of businesses using DMP</p>
+            </div>
+            
+            <!-- Yahan change kiya hai: register.php se registration.php -->
+            <form action="registration.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile">Mobile Number *</label>
+                    <input type="tel" id="mobile" name="mobile" required placeholder="Enter 10-digit mobile number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <textarea id="address" name="address" required placeholder="Enter your complete address"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" name="password" required placeholder="Create a strong password">
+                </div>
+                
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            
+            <div class="login-link">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon">🚀</div>
+            <h3>Fast Setup</h3>
+            <p>Get started in minutes</p>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure</h3>
+            <p>Your data is protected</p>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon">💼</div>
+            <h3>Professional</h3>
+            <p>Business-grade tools</p>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon">📱</div>
+            <h3>Mobile Friendly</h3>
+            <p>Work from anywhere</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>DMP Business</h3>
+            <p>Professional billing solutions for modern businesses</p>
+            
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            
+            <p>📞 Phone: 9919559898 | 📧 Email: support@dmpbusiness.com</p>
+            <p>📍 Address: DMP Business Pvt Ltd, Uttar Pradesh, India</p>
+            
+            <p style="margin-top: 1.5rem;">&copy; 2024 DMP Business. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const mobile = document.getElementById('mobile').value;
+            const password = document.getElementById('password').value;
+            
+            // Mobile number validation
+            if (!/^\d{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
+                e.preventDefault();
+                return;
+            }
+            
+            // Password strength validation
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

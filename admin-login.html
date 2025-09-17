@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - DMP Business</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .admin-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .admin-icon {
+            font-size: 4rem;
+            color: #0062cc;
+            margin-bottom: 1.5rem;
+        }
+        
+        .admin-container h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+        }
+        
+        .admin-container p {
+            color: #666;
+            margin-bottom: 2.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #0062cc;
+            box-shadow: 0 0 0 3px rgba(0,98,204,0.1);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #0062cc 0%, #00468e 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,98,204,0.3);
+        }
+        
+        .back-link {
+            display: block;
+            margin-top: 2rem;
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            color: #0062cc;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-icon">
+            <i class="fas fa-lock"></i>
+        </div>
+        <h1>Admin Access</h1>
+        <p>Enter admin password to view user registration data</p>
+        
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label for="adminPassword">Admin Password</label>
+                <input type="password" id="adminPassword" required placeholder="Enter admin password">
+            </div>
+            
+            <button type="submit" class="submit-btn">Access User Data</button>
+        </form>
+        
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('adminPassword').value;
+            const adminPassword = 'admin123'; // Change this to your desired admin password
+            
+            if (password === adminPassword) {
+                // Redirect to user data page
+                window.location.href = 'user-data.html';
+            } else {
+                alert('Incorrect admin password. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - DMP Business</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Terms Page Specific Styles */
+        .terms-page .main-container {
+            margin-top: 100px;
+        }
+        
+        .terms-page .page-header {
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8e00 100%);
+            color: white;
+        }
+        
+        .terms-page .page-header h1 {
+            background: linear-gradient(135deg, #fff 0%, #ffe0b2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .terms-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .terms-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .terms-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-header h2 {
+            color: #ff6b00;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-header h2::before {
+            content: "⚖️";
+            font-size: 1.5rem;
+        }
+        
+        .section-content {
+            color: #555;
+        }
+        
+        .section-content p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+        
+        .section-content ul, .section-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .section-content li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .highlight-box {
+            background: #fff3e0;
+            padding: 1.5rem;
+            border-left: 4px solid #ff6b00;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .warning-box {
+            background: #ffebee;
+            padding: 1.5rem;
+            border-left: 4px solid #f44336;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .acceptance-box {
+            background: #e8f5e8;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            border: 2px solid #4caf50;
+        }
+        
+        /* Table of Contents for Terms */
+        .terms-toc {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .terms-toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .toc-item {
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .toc-item:hover {
+            border-color: #ff6b00;
+            transform: translateY(-2px);
+        }
+        
+        .toc-item a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design for Terms */
+        @media (max-width: 768px) {
+            .terms-container {
+                padding: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .terms-toc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .terms-container {
+                padding: 1.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body class="terms-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DMP Business</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="registration.html">Register</a>
+                <a href="billing.html">Billing</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" class="login-btn">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Terms of Service</h1>
+            <p>Please read these terms carefully before using our services</p>
+            <div class="last-updated">
+                📅 Last Updated: September 7, 2024
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="terms-toc">
+            <h2>📑 Quick Navigation</h2>
+            <div class="terms-toc-grid">
+                <div class="toc-item">
+                    <a href="#acceptance">Acceptance</a>
+                </div>
+                <div class="toc-item">
+                    <a href="#account">Account Terms</a>
+                </div>
+                <div class="toc-item">
+                    <a href="#payments">Payments</a>
+                </div>
+                <div class="toc-item">
+                    <a href="#conduct">User Conduct</a>
+                </div>
+                <div class="toc-item">
+                    <a href="#termination">Termination</a>
+                </div>
+                <div class="toc-item">
+                    <a href="#liability">Liability</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terms Content -->
+        <div class="terms-container">
+            <!-- Acceptance Section -->
+            <div class="terms-section" id="acceptance">
+                <div class="section-header">
+                    <h2>1. Acceptance of Terms</h2>
+                </div>
+                <div class="section-content">
+                    <p>By accessing or using DMP Business services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our services.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>Note:</strong> These terms constitute a legally binding agreement between you and DMP Business.
+                    </div>
+                    
+                    <p>We reserve the right to modify these terms at any time. Continued use of our services after changes constitutes acceptance of the modified terms.</p>
+                </div>
+            </div>
+
+            <!-- Account Terms -->
+            <div class="terms-section" id="account">
+                <div class="section-header">
+                    <h2>2. Account Terms</h2>
+                </div>
+                <div class="section-content">
+                    <p>To use our services, you must:</p>
+                    <ul>
+                        <li>Be at least 18 years old</li>
+                        <li>Provide accurate and complete information</li>
+                        <li>Maintain the security of your account credentials</li>
+                        <li>Be responsible for all activities under your account</li>
+                        <li>Notify us immediately of any unauthorized use</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <strong>Warning:</strong> You are responsible for maintaining the confidentiality of your account and password. We cannot and will not be liable for any loss or damage from your failure to comply with this security obligation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments -->
+            <div class="terms-section" id="payments">
+                <div class="section-header">
+                    <h2>3. Payments and Billing</h2>
+                </div>
+                <div class="section-content">
+                    <p><strong>Free Services:</strong> Basic features are available free of charge.</p>
+                    <p><strong>Premium Services:</strong> Certain advanced features may require payment.</p>
+                    
+                    <p><strong>Payment Terms:</strong></p>
+                    <ul>
+                        <li>All fees are quoted in Indian Rupees (₹)</li>
+                        <li>Payments are non-refundable</li>
+                        <li>We may change fees with 30 days notice</li>
+                        <li>Taxes are not included and are your responsibility</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>Billing Cycle:</strong> Premium services are billed monthly or annually in advance. Automatic renewal unless canceled.
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Conduct -->
+            <div class="terms-section" id="conduct">
+                <div class="section-header">
+                    <h2>4. User Conduct</h2>
+                </div>
+                <div class="section-content">
+                    <p>You agree not to:</p>
+                    <ul>
+                        <li>Violate any laws or regulations</li>
+                        <li>Infringe on intellectual property rights</li>
+                        <li>Upload viruses or malicious code</li>
+                        <li>Attempt unauthorized access to our systems</li>
+                        <li>Use our services for illegal activities</li>
+                        <li>Harass, abuse, or harm other users</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <strong>Prohibited Activities:</strong> Spamming, phishing, fraud, and any activity that disrupts our services is strictly prohibited and may result in immediate account termination.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Termination -->
+            <div class="terms-section" id="termination">
+                <div class="section-header">
+                    <h2>5. Termination</h2>
+                </div>
+                <div class="section-content">
+                    <p>You may terminate your account at any time by contacting us.</p>
+                    <p>We may suspend or terminate your account if:</p>
+                    <ul>
+                        <li>You violate these terms</li>
+                        <li>We suspect fraudulent activity</li>
+                        <li>Required by law</li>
+                        <li>For extended periods of inactivity</li>
+                    </ul>
+                    
+                    <p>Upon termination:</p>
+                    <ul>
+                        <li>Your right to use services immediately ceases</li>
+                        <li>We may delete your data after 30 days</li>
+                        <li>Outstanding payments become immediately due</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Liability -->
+            <div class="terms-section" id="liability">
+                <div class="section-header">
+                    <h2>6. Limitation of Liability</h2>
+                </div>
+                <div class="section-content">
+                    <p>To the maximum extent permitted by law:</p>
+                    <ul>
+                        <li>We are not liable for indirect, incidental damages</li>
+                        <li>Total liability is limited to fees paid in last 6 months</li>
+                        <li>We make no warranties about service reliability</li>
+                        <li>We are not responsible for third-party services</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>Disclaimer:</strong> Services are provided "as is" without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability and fitness for a particular purpose.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Governing Law -->
+            <div class="terms-section">
+                <div class="section-header">
+                    <h2>7. Governing Law</h2>
+                </div>
+                <div class="section-content">
+                    <p>These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in Uttar Pradesh, India.</p>
+                    
+                    <p><strong>Contact for Legal Notices:</strong></p>
+                    <p>DMP Business Pvt Ltd<br>
+                    Uttar Pradesh, India<br>
+                    Email: legal@dmpbusiness.com</p>
+                </div>
+            </div>
+
+            <!-- Acceptance Box -->
+            <div class="acceptance-box">
+                <h3>✅ By using our services, you agree to these terms</h3>
+                <p>Your continued use of DMP Business constitutes acceptance of our Terms of Service and Privacy Policy.</p>
+                <a href="registration.html" class="submit-btn">I Accept - Continue to Registration</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">↑</a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>DMP Business</h3>
+            <p>Professional billing solutions for modern businesses</p>
+            
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            
+            <p>📞 Phone: 9919559898 | 📧 Email: support@dmpbusiness.com</p>
+            <p>📍 Address: DMP Business Pvt Ltd, Uttar Pradesh, India</p>
+            
+            <p style="margin-top: 2rem;">&copy; 2024 DMP Business. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling with offset for fixed navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 100;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

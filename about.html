@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>about DMP Business </title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0062cc;
+            --secondary: #ff6b00;
+            --accent: #00c2ff;
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gray: #f8f9fa;
+            --text: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .header h1 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Admin panel in top right corner */
+        .admin-corner {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .admin-toggle {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .admin-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            width: 350px;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            z-index: 100;
+            display: none;
+        }
+        
+        .admin-panel.active {
+            display: block;
+        }
+        
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .admin-form input {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .admin-form button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        #adminControls {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        #adminControls button {
+            width: 100%;
+            margin-bottom: 0.5rem;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .instructions ul {
+            padding-left: 1.2rem;
+            margin-bottom: 0;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .team-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .member-image {
+            height: 300px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+        }
+        
+        .member-name {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .member-role {
+            color: #6c757d;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .photo-edit-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .team-member.editable:hover .photo-edit-overlay {
+            opacity: 1;
+        }
+        
+        .edit-photo-btn {
+            background: var(--primary);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.error {
+            background: #f44336;
+        }
+        
+        @media (max-width: 768px) {
+            .team-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .admin-panel {
+                width: 300px;
+                right: -10px;
+            }
+            
+            .header {
+                padding-top: 5rem;
+            }
+            
+            .admin-corner {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>About DMP Business</h1>         
+            <!-- Admin panel in top right corner -->
+            <div class="admin-corner">
+                <button class="admin-toggle" onclick="toggleAdminPanel()">
+                    <i class="fas fa-user-cog"></i> Admin
+                </button>
+                
+                <div class="admin-panel" id="adminPanel">
+                    <h3 style="text-align: center; margin-bottom: 1rem; color: var(--primary);">Admin Login</h3>
+                    <div class="admin-form">
+                        <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+                        <button onclick="login()">Login</button>
+                    </div>
+                    
+                    <div class="instructions">
+                        <h3><i class="fas fa-info-circle"></i> Instructions:</h3>
+                        <ul>
+                            <li>Password: dmp2024</li>
+                            <li>Enable Photo Editing after login</li>
+                            <li>Hover over photos to change them</li>
+                            <li>Photos are saved permanently</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="adminControls">
+                        <button onclick="enableEditMode()" style="background: #28a745; color: white;">
+                            <i class="fas fa-edit"></i> Enable Photo Editing
+                        </button>
+                        <button onclick="logout()" style="background: #dc3545; color: white;">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="team-section">
+            <div class="team-member" id="member1">
+                <div class="member-image">
+                    <img id="photo1" src="https://placehold.co/400x500/007bff/white?text=Father's+Photo" alt="Founder Photo">
+                    <div class="photo-edit-overlay">
+                        <button class="edit-photo-btn" onclick="editPhoto(1)">Change Photo</button>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Shri Ram Kumar</h3>
+                    <p class="member-role">Founder & CEO</p>
+                    <p>Visionary leader with 15+ years of experience in business transformation and strategic planning.</p>
+                </div>
+            </div>
+            
+            <div class="team-member" id="member2">
+                <div class="member-image">
+                    <img id="photo2" src="https://placehold.co/400x500/007bff/white?text=Your+Photo" alt="Director Photo">
+                    <div class="photo-edit-overlay">
+                        <button class="edit-photo-btn" onclick="editPhoto(2)">Change Photo</button>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Amit Kumar</h3>
+                    <p class="member-role">Director & CTO</p>
+                    <p>Technology innovator with expertise in digital transformation and software architecture.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">Photo updated successfully!</div>
+
+    <script>
+        // Admin credentials
+        const ADMIN_PASSWORD = "dmp2024";
+        let isAdminLoggedIn = false;
+        let editModeEnabled = false;
+        
+        // Toggle admin panel
+        function toggleAdminPanel() {
+            const panel = document.getElementById('adminPanel');
+            panel.classList.toggle('active');
+        }
+        
+        // Close admin panel when clicking outside
+        document.addEventListener('click', function(event) {
+            const adminPanel = document.getElementById('adminPanel');
+            const adminToggle = document.querySelector('.admin-toggle');
+            
+            if (adminPanel.classList.contains('active') && 
+                !adminPanel.contains(event.target) && 
+                !adminToggle.contains(event.target)) {
+                adminPanel.classList.remove('active');
+            }
+        });
+        
+        // Show notification
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.remove('error');
+            
+            if (isError) {
+                notification.classList.add('error');
+            }
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Check if photos are saved in localStorage
+        function loadSavedPhotos() {
+            const savedPhoto1 = localStorage.getItem('dmp_photo_1');
+            const savedPhoto2 = localStorage.getItem('dmp_photo_2');
+            
+            if (savedPhoto1) {
+                document.getElementById('photo1').src = savedPhoto1;
+            }
+            
+            if (savedPhoto2) {
+                document.getElementById('photo2').src = savedPhoto2;
+            }
+        }
+        
+        // Admin login function
+        function login() {
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                document.getElementById('adminControls').style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                showNotification('Admin login successful!');
+            } else {
+                showNotification('Incorrect password. Please try again.', true);
+            }
+        }
+        
+        // Enable edit mode
+        function enableEditMode() {
+            if (!isAdminLoggedIn) {
+                showNotification('Please login first.', true);
+                return;
+            }
+            
+            editModeEnabled = true;
+            const members = document.querySelectorAll('.team-member');
+            members.forEach(member => {
+                member.classList.add('editable');
+            });
+            showNotification('Edit mode enabled. Hover over photos to edit them.');
+        }
+        
+        // Edit photo function
+        function editPhoto(memberId) {
+            if (!isAdminLoggedIn || !editModeEnabled) {
+                showNotification('Please login and enable edit mode first.', true);
+                return;
+            }
+            
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Check if file is an image
+                    if (!file.type.match('image.*')) {
+                        showNotification('Please select an image file.', true);
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        // Update the image
+                        const imgElement = document.getElementById('photo' + memberId);
+                        imgElement.src = event.target.result;
+                        
+                        // Save to localStorage for permanent storage
+                        localStorage.setItem('dmp_photo_' + memberId, event.target.result);
+                        
+                        showNotification('Photo updated successfully! It will remain saved even after page refresh.');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            input.click();
+        }
+        
+        // Logout function
+        function logout() {
+            isAdminLoggedIn = false;
+            editModeEnabled = false;
+            document.getElementById('adminControls').style.display = 'none';
+            
+            const members = document.querySelectorAll('.team-member');
+            members.forEach(member => {
+                member.classList.remove('editable');
+            });
+            
+            // Close admin panel
+            document.getElementById('adminPanel').classList.remove('active');
+            
+            showNotification('Logged out successfully.');
+        }
+        
+        // Load saved photos when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            loadSavedPhotos();
+            
+            // Check if we have any saved photos
+            const hasSavedPhoto1 = localStorage.getItem('dmp_photo_1');
+            const hasSavedPhoto2 = localStorage.getItem('dmp_photo_2');
+            
+            if (hasSavedPhoto1 || hasSavedPhoto2) {
+                showNotification('Previously saved photos loaded successfully.');
+            }
+        });
+    </script>
+</body>
+</html>

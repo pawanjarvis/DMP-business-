@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User and Bill Data</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tab {
+            padding: 15px 20px;
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .tab.active {
+            background: #6a11cb;
+            color: white;
+        }
+        
+        .tab:hover:not(.active) {
+            background: #f0f0f0;
+        }
+        
+        .content {
+            display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #6a11cb;
+        }
+        
+        .card h3 {
+            margin-bottom: 15px;
+            color: #6a11cb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card p {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .card .badge {
+            background: #e0e7ff;
+            color: #6a11cb;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #6a11cb;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .bill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .bill-amount {
+            font-weight: 700;
+            color: #ff4757;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #777;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #ff4757;
+            background: #ffecee;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>User & Bill Management System</h1>
+            <p class="subtitle">View and manage user data and billing information</p>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="users">Users Data (11)</div>
+            <div class="tab" data-tab="bills">Bills Data</div>
+        </div>
+        
+        <div id="users-content" class="content active">
+            <div class="loading" id="users-loading">Loading user data...</div>
+            <div class="grid" id="users-grid"></div>
+        </div>
+        
+        <div id="bills-content" class="content">
+            <div class="loading" id="bills-loading">Loading bill data...</div>
+            <div class="grid" id="bills-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data (replace with your actual data.json content)
+        const data = {
+            users: [
+                { id: 1, name: "Rahul Sharma", email: "rahul@example.com", phone: "9876543210", joinDate: "2023-01-15" },
+                { id: 2, name: "Priya Patel", email: "priya@example.com", phone: "8765432109", joinDate: "2023-02-20" },
+                { id: 3, name: "Amit Kumar", email: "amit@example.com", phone: "7654321098", joinDate: "2023-03-10" },
+                { id: 4, name: "Sneha Gupta", email: "sneha@example.com", phone: "6543210987", joinDate: "2023-04-05" },
+                { id: 5, name: "Vikram Singh", email: "vikram@example.com", phone: "9432109876", joinDate: "2023-05-12" },
+                { id: 6, name: "Neha Reddy", email: "neha@example.com", phone: "8321098765", joinDate: "2023-06-18" },
+                { id: 7, name: "Karan Malhotra", email: "karan@example.com", phone: "7210987654", joinDate: "2023-07-22" },
+                { id: 8, name: "Pooja Mehta", email: "pooja@example.com", phone: "6109876543", joinDate: "2023-08-30" },
+                { id: 9, name: "Rajesh Khanna", email: "rajesh@example.com", phone: "5098765432", joinDate: "2023-09-05" },
+                { id: 10, name: "Anjali Desai", email: "anjali@example.com", phone: "4987654321", joinDate: "2023-10-15" },
+                { id: 11, name: "Sanjay Verma", email: "sanjay@example.com", phone: "3876543210", joinDate: "2023-11-20" }
+            ],
+            bills: [
+                { id: 101, userId: 1, amount: 1250, date: "2023-12-01", status: "Paid" },
+                { id: 102, userId: 2, amount: 850, date: "2023-12-02", status: "Pending" },
+                { id: 103, userId: 3, amount: 2100, date: "2023-12-03", status: "Paid" },
+                { id: 104, userId: 4, amount: 950, date: "2023-12-04", status: "Pending" },
+                { id: 105, userId: 5, amount: 1750, date: "2023-12-05", status: "Paid" }
+            ]
+        };
+
+        // DOM elements
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.content');
+        const usersGrid = document.getElementById('users-grid');
+        const billsGrid = document.getElementById('bills-grid');
+        const usersLoading = document.getElementById('users-loading');
+        const billsLoading = document.getElementById('bills-loading');
+
+        // Tab switching functionality
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show active content
+                contents.forEach(content => content.classList.remove('active'));
+                document.getElementById(`${tabName}-content`).classList.add('active');
+            });
+        });
+
+        // Function to load and display users
+        function loadUsers() {
+            // Simulate loading from JSON file (replace with actual fetch from data.json)
+            setTimeout(() => {
+                usersLoading.style.display = 'none';
+                
+                data.users.forEach(user => {
+                    const userCard = document.createElement('div');
+                    userCard.className = 'card';
+                    userCard.innerHTML = `
+                        <h3>${user.name} <span class="badge">ID: ${user.id}</span></h3>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                        <p><strong>Phone:</strong> ${user.phone}</p>
+                        <p><strong>Join Date:</strong> ${user.joinDate}</p>
+                    `;
+                    usersGrid.appendChild(userCard);
+                });
+            }, 1000);
+        }
+
+        // Function to load and display bills
+        function loadBills() {
+            // Simulate loading from JSON file (replace with actual fetch from data.json)
+            setTimeout(() => {
+                billsLoading.style.display = 'none';
+                
+                data.bills.forEach(bill => {
+                    const user = data.users.find(u => u.id === bill.userId);
+                    const billCard = document.createElement('div');
+                    billCard.className = 'card';
+                    billCard.innerHTML = `
+                        <h3>Bill #${bill.id} <span class="badge">${bill.status}</span></h3>
+                        <p><strong>Customer:</strong> ${user ? user.name : 'Unknown'}</p>
+                        <p><strong>Date:</strong> ${bill.date}</p>
+                        <div class="bill-info">
+                            <span><strong>Amount:</strong></span>
+                            <span class="bill-amount">₹${bill.amount}</span>
+                        </div>
+                    `;
+                    billsGrid.appendChild(billCard);
+                });
+            }, 1000);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUsers();
+            loadBills();
+        });
+    </script>
+</body>
+</html>

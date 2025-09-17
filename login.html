@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DMP Business</title>
+    <style>
+        /* Your existing CSS styles remain unchanged */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #007bff;
+        }
+        
+        .register-btn {
+            background: #28a745;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .register-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Login Container */
+        .login-container {
+            display: flex;
+            gap: 3rem;
+            max-width: 1000px;
+            width: 100%;
+            align-items: center;
+        }
+        
+        /* Login Card */
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            flex: 1;
+            max-width: 450px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .login-header h1 {
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,123,255,0.3);
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+        }
+        
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-top: 1rem;
+        }
+        
+        .forgot-password a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        /* Features Side */
+        .features-side {
+            flex: 1;
+            color: white;
+            max-width: 400px;
+        }
+        
+        .features-side h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            min-width: 30px;
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .feature-text h4 {
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+        
+        .feature-text p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(51, 51, 51, 0.95);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .login-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .features-side {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+            
+            .login-card {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .login-card {
+                padding: 2rem;
+            }
+            
+            .login-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .login-card {
+                padding: 1.5rem;
+            }
+            
+            .form-group input {
+                padding: 0.8rem;
+            }
+            
+            .submit-btn {
+                padding: 0.8rem;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">DMP Business</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="registration.html">Register</a>
+                <a href="billing.html">Billing</a>
+                <a href="contact.html">Contact</a>
+                <a href="registration.html" class="register-btn">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <!-- Login Form -->
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to your DMP Business account</p>
+            </div>
+            
+            <form action="login.php" method="POST">
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" required 
+                           placeholder="Enter your registered mobile number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Enter your password">
+                </div>
+                
+                <div class="forgot-password">
+                    <a href="forgot-password.html">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+            
+            <div class="register-link">
+                Don't have an account? <a href="registration.html">Create Account</a>
+            </div>
+        </div>
+
+        <!-- Features Side -->
+        <div class="features-side">
+            <h2>Why Sign In?</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">💼</div>
+                    <div class="feature-text">
+                        <h4>Access Dashboard</h4>
+                        <p>Manage your business from one place</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🧾</div>
+                    <div class="feature-text">
+                        <h4>Generate Bills</h4>
+                        <p>Create professional invoices instantly</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h4>View Reports</h4>
+                        <p>Track your business performance</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-text">
+                        <h4>Secure Access</h4>
+                        <p>Your data is always protected</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>DMP Business</h3>
+            <p>Professional billing solutions for modern businesses</p>
+            
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            
+            <p>📞 Phone: 9919559898 | 📧 Email: support@dmpbusiness.com</p>
+            <p>📍 Address: DMP Business Pvt Ltd, Uttar Pradesh, India</p>
+            
+            <p style="margin-top: 1.5rem;">&copy; 2024 DMP Business. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const mobile = document.getElementById('mobile').value;
+            const password = document.getElementById('password').value;
+            
+            // Mobile number validation
+            if (!/^\d{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
+                e.preventDefault();
+                return;
+            }
+            
+            // Password validation
+            if (password.length < 1) {
+                alert('Please enter your password');
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

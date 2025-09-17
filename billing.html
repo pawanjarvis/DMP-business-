@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Billing - DMP Business</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Admin Navigation */
+        .admin-navbar {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .admin-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #007bff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .admin-action-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-action-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .logout-btn {
+            background: #e74c3c;
+            padding: 0.6rem 1.2rem;
+        }
+        
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-container {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Admin Dashboard Header */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .admin-welcome h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .admin-stats {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Billing Container */
+        .billing-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 968px) {
+            .billing-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Admin Billing Form */
+        .billing-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .billing-form::before {
+            content: 'ADMIN ONLY';
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: #e74c3c;
+            color: white;
+            padding: 0.3rem 2rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-header h2 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-header p {
+            color: #666;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(40,167,69,0.3);
+        }
+
+        /* Bill Preview */
+        .bill-preview {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #007bff;
+            position: relative;
+        }
+        
+        .preview-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .preview-header h2 {
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .bill-details {
+            margin-bottom: 2rem;
+        }
+        
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .bill-row:last-child {
+            border-bottom: none;
+        }
+        
+        .bill-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .bill-value {
+            color: #666;
+        }
+        
+        .bill-total {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+        
+        .bill-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .bill-action-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .print-btn {
+            background: #007bff;
+            color: white;
+        }
+        
+        .print-btn:hover {
+            background: #0056b3;
+        }
+        
+        .download-btn {
+            background: #28a745;
+            color: white;
+        }
+        
+        .download-btn:hover {
+            background: #218838;
+        }
+
+        /* Recent Bills Section */
+        .recent-bills {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header h2 {
+            color: #333;
+        }
+        
+        .view-all {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .bills-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .bills-table th, .bills-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .bills-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .bills-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-paid {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .action-icon {
+            color: #007bff;
+            cursor: pointer;
+            margin-right: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Admin Features Section */
+        .features-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+        
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Admin Footer */
+        .admin-footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        /* Admin Security Badge */
+        .security-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        /* Admin Login Modal */
+        .admin-login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        
+        .login-header {
+            margin-bottom: 2rem;
+        }
+        
+        .login-header h2 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-header p {
+            color: #666;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,123,255,0.3);
+        }
+        
+        .security-note {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        /* Blurred Content when not authenticated */
+        .blurred-content {
+            filter: blur(5px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .admin-stats {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .admin-navbar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .admin-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .admin-stats {
+                justify-content: center;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
+            
+            .billing-form,
+            .bill-preview {
+                padding: 1.5rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .bills-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .billing-form,
+            .bill-preview {
+                padding: 1.2rem;
+            }
+            
+            .form-group input, .form-group select {
+                padding: 0.8rem;
+            }
+            
+            .submit-btn {
+                padding: 1rem;
+            }
+            
+            .stat-box {
+                min-width: 120px;
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-navbar">
+        <div class="admin-info">
+            <div class="admin-avatar">A</div>
+            <div>
+                <h3>Admin User</h3>
+                <p>Administrator</p>
+            </div>
+        </div>
+        
+        <div class="admin-actions">
+            <a href="#" class="admin-action-btn">
+                <i class="fas fa-chart-line"></i> Dashboard
+            </a>
+            <a href="#" class="admin-action-btn">
+                <i class="fas fa-users"></i> Customers
+            </a>
+            <a href="#" class="admin-action-btn">
+                <i class="fas fa-file-invoice"></i> Invoices
+            </a>
+            <a href="#" class="admin-action-btn">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+            <a href="#" class="admin-action-btn logout-btn" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container" id="main-content">
+        <!-- Admin Dashboard Header -->
+        <div class="admin-header">
+            <div class="admin-welcome">
+                <h1>Admin Billing Dashboard</h1>
+                <p>Manage and create professional invoices with advanced controls</p>
+            </div>
+            
+            <div class="admin-stats">
+                <div class="stat-box">
+                    <div class="stat-value">₹42.8K</div>
+                    <div class="stat-label">Revenue Today</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">128</div>
+                    <div class="stat-label">Invoices</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">94%</div>
+                    <div class="stat-label">Paid</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Billing Container -->
+        <div class="billing-container">
+            <!-- Admin Billing Form -->
+            <div class="billing-form">
+                <div class="form-header">
+                    <h2>Create New Bill</h2>
+                    <p>Fill in the details to generate a professional invoice</p>
+                </div>
+                
+                <form id="admin-billing-form">
+                    <div class="form-group">
+                        <label for="customer_name">Customer Name *</label>
+                        <input type="text" id="customer_name" name="customer_name" required 
+                               placeholder="Enter customer full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customer_id">Customer ID</label>
+                        <input type="text" id="customer_id" name="customer_id" 
+                               placeholder="Enter customer ID">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product_name">Product/Service *</label>
+                        <select id="product_name" name="product_name" required>
+                            <option value="">Select a product/service</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Mobile App">Mobile App</option>
+                            <option value="Consulting">Consulting</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="SEO Service">SEO Service</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" name="quantity" required 
+                               placeholder="Enter quantity" min="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="price">Price per Unit (₹) *</label>
+                        <input type="number" id="price" name="price" step="0.01" required 
+                               placeholder="Enter price per unit">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gst_percentage">GST Percentage *</label>
+                        <select id="gst_percentage" name="gst_percentage" required>
+                            <option value="0">0%</option>
+                            <option value="5">5%</option>
+                            <option value="12">12%</option>
+                            <option value="18" selected>18%</option>
+                            <option value="28">28%</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="discount">Discount (₹)</label>
+                        <input type="number" id="discount" name="discount" step="0.01" 
+                               placeholder="Enter discount amount">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-file-invoice"></i> Generate Bill
+                    </button>
+                </form>
+            </div>
+
+            <!-- Bill Preview -->
+            <div class="bill-preview">
+                <div class="preview-header">
+                    <h2>Bill Preview</h2>
+                    <p>Real-time GST calculation preview</p>
+                </div>
+                
+                <div class="bill-details">
+                    <div class="bill-row">
+                        <span class="bill-label">Customer Name:</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                    <div class="bill-row">
+                        <span class="bill-label">Customer ID:</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                    <div class="bill-row">
+                        <span class="bill-label">Product/Service:</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                    <div class="bill-row">
+                        <span class="bill-label">Quantity:</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                    <div class="bill-row">
+                        <span class="bill-label">Unit Price:</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                    <div class="bill-row">
+                        <span class="bill-label">Sub Total:</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                    <div class="bill-row">
+                        <span class="bill-label">Discount:</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                    <div class="bill-row">
+                        <span class="bill-label">GST (<span id="gst-percentage-label">18%</span>):</span>
+                        <span class="bill-value">-</span>
+                    </div>
+                </div>
+                
+                <div class="bill-total">
+                    <div class="total-row">
+                        <span class="bill-label">Final Amount:</span>
+                        <span class="bill-value">₹ 0.00</span>
+                    </div>
+                </div>
+                
+                <div class="bill-actions">
+                    <button class="bill-action-btn print-btn">
+                        <i class="fas fa-print"></i> Print Bill
+                    </button>
+                    <button class="bill-action-btn download-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Bills Section -->
+        <div class="recent-bills">
+            <div class="section-header">
+                <h2>Recent Bills</h2>
+                <a href="#" class="view-all">
+                    View All <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <table class="bills-table">
+                <thead>
+                    <tr>
+                        <th>Bill No.</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#INV-2023-1089</td>
+                        <td>Rajesh Kumar</td>
+                        <td>12 Nov 2023</td>
+                        <td>₹12,500.00</td>
+                        <td><span class="status-badge status-paid">Paid</span></td>
+                        <td>
+                            <i class="fas fa-eye action-icon"></i>
+                            <i class="fas fa-download action-icon"></i>
+                            <i class="fas fa-print action-icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#INV-2023-1088</td>
+                        <td>Sunita Singh</td>
+                        <td>11 Nov 2023</td>
+                        <td>₹8,300.00</td>
+                        <td><span class="status-badge status-pending">Pending</span></td>
+                        <td>
+                            <i class="fas fa-eye action-icon"></i>
+                            <i class="fas fa-download action-icon"></i>
+                            <i class="fas fa-print action-icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#INV-2023-1087</td>
+                        <td>Mohan Lal</td>
+                        <td>10 Nov 2023</td>
+                        <td>₹21,800.00</td>
+                        <td><span class="status-badge status-paid">Paid</span></td>
+                        <td>
+                            <i class="fas fa-eye action-icon"></i>
+                            <i class="fas fa-download action-icon"></i>
+                            <i class="fas fa-print action-icon"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#INV-2023-1086</td>
+                        <td>Priya Enterprises</td>
+                        <td>9 Nov 2023</td>
+                        <td>₹15,200.00</td>
+                        <td><span class="status-badge status-paid">Paid</span></td>
+                        <td>
+                            <i class="fas fa-eye action-icon"></i>
+                            <i class="fas fa-download action-icon"></i>
+                            <i class="fas fa-print action-icon"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Admin Features Section -->
+        <div class="features-section">
+            <h2>Advanced Admin Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Admin Security</h3>
+                    <p>Secure admin-only access with activity logging and authentication</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-database"></i></div>
+                    <h3>Data Management</h3>
+                    <p>Full control over customer data, products, and billing history</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Advanced Reports</h3>
+                    <p>Generate detailed financial reports and analytics</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Customization</h3>
+                    <p>Customize invoice templates, tax rates, and business information</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Footer -->
+    <footer class="admin-footer">
+        <div class="footer-content">
+            <h3>DMP Business - Admin Panel</h3>
+            <p>Professional billing solutions with advanced administrative controls</p>
+            
+            <div class="footer-links">
+                <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-users"></i> Customers</a>
+                <a href="#"><i class="fas fa-file-invoice"></i> Invoices</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+            </div>
+            
+            <p><i class="fas fa-phone"></i> Admin Support: 9919559898 | <i class="fas fa-envelope"></i> Email: admin@dmpbusiness.com</p>
+            <p><i class="fas fa-map-marker-alt"></i> DMP Business Pvt Ltd, Uttar Pradesh, India</p>
+            
+            <p style="margin-top: 2rem;">&copy; 2024 DMP Business. All rights reserved. | <a href="#" style="color: #fff;">Privacy Policy</a> | <a href="#" style="color: #fff;">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Security Badge -->
+    <div class="security-badge">
+        <i class="fas fa-lock"></i> Secure Admin Session
+    </div>
+
+    <!-- Admin Login Modal (Initially Visible) -->
+    <div class="admin-login-modal" id="login-modal">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Admin Authentication Required</h2>
+                <p>Please enter your admin credentials to access the billing system</p>
+            </div>
+            
+            <form class="login-form" id="login-form">
+                <div class="form-group">
+                    <label for="admin_username">Admin Username</label>
+                    <input type="text" id="admin_username" name="admin_username" required 
+                           placeholder="Enter admin username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="admin_password">Admin Password</label>
+                    <input type="password" id="admin_password" name="admin_password" required 
+                           placeholder="Enter admin password">
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login as Admin
+                </button>
+            </form>
+            
+            <div class="security-note">
+                <i class="fas fa-info-circle"></i> This billing system is restricted to authorized administrators only. 
+                Unauthorized access attempts will be logged.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Authentication state
+        let isAuthenticated = false;
+        
+        // Check if user was previously authenticated
+        const checkAuthStatus = () => {
+            const authStatus = localStorage.getItem('adminAuthenticated');
+            if (authStatus === 'true') {
+                isAuthenticated = true;
+                document.getElementById('login-modal').style.display = 'none';
+                document.getElementById('main-content').classList.remove('blurred-content');
+            } else {
+                document.getElementById('main-content').classList.add('blurred-content');
+            }
+        };
+        
+        // Initialize authentication check
+        checkAuthStatus();
+        
+        // Admin login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('admin_username').value;
+            const password = document.getElementById('admin_password').value;
+            
+            // Simple authentication (in a real app, this would connect to a backend)
+            if (username === 'admin' && password === 'admin123') {
+                isAuthenticated = true;
+                localStorage.setItem('adminAuthenticated', 'true');
+                document.getElementById('login-modal').style.display = 'none';
+                document.getElementById('main-content').classList.remove('blurred-content');
+                alert('Admin login successful! Welcome back.');
+            } else {
+                alert('Invalid admin credentials. Please try again.');
+            }
+        });
+        
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            isAuthenticated = false;
+            localStorage.removeItem('adminAuthenticated');
+            document.getElementById('login-modal').style.display = 'flex';
+            document.getElementById('main-content').classList.add('blurred-content');
+            alert('You have been logged out successfully.');
+        });
+        
+        // Real-time bill calculation with enhanced features
+        const quantityInput = document.getElementById('quantity');
+        const priceInput = document.getElementById('price');
+        const customerInput = document.getElementById('customer_name');
+        const customerIdInput = document.getElementById('customer_id');
+        const productInput = document.getElementById('product_name');
+        const gstInput = document.getElementById('gst_percentage');
+        const discountInput = document.getElementById('discount');
+        
+        const updateBillPreview = () => {
+            const quantity = parseFloat(quantityInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+            const customer = customerInput.value || '-';
+            const customerId = customerIdInput.value || '-';
+            const product = productInput.value || '-';
+            const gstPercentage = parseFloat(gstInput.value) || 0;
+            const discount = parseFloat(discountInput.value) || 0;
+            
+            const subTotal = quantity * price;
+            const discountAmount = discount;
+            const amountAfterDiscount = subTotal - discountAmount;
+            const gst = amountAfterDiscount * (gstPercentage / 100);
+            const finalAmount = amountAfterDiscount + gst;
+            
+            // Update preview
+            document.querySelectorAll('.bill-value')[0].textContent = customer;
+            document.querySelectorAll('.bill-value')[1].textContent = customerId;
+            document.querySelectorAll('.bill-value')[2].textContent = product;
+            document.querySelectorAll('.bill-value')[3].textContent = quantity;
+            document.querySelectorAll('.bill-value')[4].textContent = `₹ ${price.toFixed(2)}`;
+            document.querySelectorAll('.bill-value')[5].textContent = `₹ ${subTotal.toFixed(2)}`;
+            document.querySelectorAll('.bill-value')[6].textContent = `₹ ${discountAmount.toFixed(2)}`;
+            document.querySelectorAll('.bill-value')[7].textContent = `₹ ${gst.toFixed(2)}`;
+            document.querySelector('.total-row .bill-value').textContent = `₹ ${finalAmount.toFixed(2)}`;
+            
+            // Update GST percentage label
+            document.getElementById('gst-percentage-label').textContent = `${gstPercentage}%`;
+        };
+        
+        // Add event listeners for real-time updates
+        quantityInput.addEventListener('input', updateBillPreview);
+        priceInput.addEventListener('input', updateBillPreview);
+        customerInput.addEventListener('input', updateBillPreview);
+        customerIdInput.addEventListener('input', updateBillPreview);
+        productInput.addEventListener('input', updateBillPreview);
+        gstInput.addEventListener('change', updateBillPreview);
+        discountInput.addEventListener('input', updateBillPreview);
+        
+        // Form submission with authentication check
+        document.getElementById('admin-billing-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!isAuthenticated) {
+                alert('Please login as admin to generate bills.');
+                document.getElementById('login-modal').style.display = 'flex';
+                return;
+            }
+            
+            // Get form values
+            const customer = customerInput.value;
+            const product = productInput.value;
+            const quantity = parseFloat(quantityInput.value);
+            const price = parseFloat(priceInput.value);
+            const gstPercentage = parseFloat(gstInput.value);
+            const discount = parseFloat(discountInput.value) || 0;
+            
+            // Calculate bill
+            const subTotal = quantity * price;
+            const discountAmount = discount;
+            const amountAfterDiscount = subTotal - discountAmount;
+            const gst = amountAfterDiscount * (gstPercentage / 100);
+            const finalAmount = amountAfterDiscount + gst;
+            
+            // Generate bill number
+            const billNumber = 'INV-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+            
+            // Show success message
+            alert(`Bill generated successfully!\nBill Number: ${billNumber}\nCustomer: ${customer}\nTotal Amount: ₹ ${finalAmount.toFixed(2)}`);
+            
+            // Reset form
+            this.reset();
+            updateBillPreview();
+        });
+        
+        // Initialize the bill preview
+        updateBillPreview();
+    </script>
+</body>
+</html>
