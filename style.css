@@ -1,0 +1,200 @@
+/* ===== ESKO STYLE FOR MINAHERB INDUSTRIES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+    --esko-dark: #1E1E1E;    /* हेडर/फुटर के लिए गहरा */
+    --esko-grey: #2C2C2C;    /* सेक्शन बैकग्राउंड */
+    --esko-light: #F4F5F7;   /* हल्का बैकग्राउंड */
+    --esko-green: #5E9E3E;   /* Esko वाला हरा (मुख्य बटन) */
+    --esko-green-dark: #4A7D2E; /* होवर पर हरा */
+    --esko-white: #FFFFFF;
+    --esko-text: #333333;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== HEADER (पूरी तरह गहरा) ===== */
+.esko-header {
+    background: var(--esko-dark);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--esko-green);
+}
+.esko-header .logo {
+    color: var(--esko-white);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.esko-header .logo span { color: var(--esko-green); }
+.esko-nav a {
+    color: #CCCCCC;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.esko-nav a:hover, .esko-nav a.active {
+    color: var(--esko-green);
+}
+
+/* ===== हीरो/बैनर ===== */
+.esko-hero {
+    background: var(--esko-grey);
+    padding: 80px 40px;
+    text-align: center;
+    color: white;
+    background-image: linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%);
+}
+.esko-hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 15px; }
+.esko-hero p { font-size: 18px; color: #B0B0B0; max-width: 600px; margin: 0 auto 30px; }
+
+/* ===== ESKO ग्रीन बटन (सिर्फ ये स्टाइल बदलेगा, बाकी कोड नहीं) ===== */
+.btn-esko {
+    background: var(--esko-green);
+    color: white;
+    padding: 14px 40px;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+}
+.btn-esko:hover {
+    background: var(--esko-green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(94, 158, 62, 0.4);
+}
+/* सेकेंडरी बटन (सफ़ेद + हरी बॉर्डर) */
+.btn-esko-outline {
+    background: transparent;
+    color: var(--esko-green);
+    border: 2px solid var(--esko-green);
+    padding: 12px 35px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+}
+.btn-esko-outline:hover {
+    background: var(--esko-green);
+    color: white;
+}
+
+/* ===== प्रोडक्ट कार्ड (ग्रिड) ===== */
+.esko-section {
+    padding: 60px 40px;
+    background: var(--esko-light);
+}
+.esko-section.dark { background: white; }
+.esko-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--esko-dark);
+    margin-bottom: 10px;
+}
+.esko-section .subtitle {
+    color: #666;
+    margin-bottom: 40px;
+}
+.esko-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+.esko-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    border-top: 4px solid var(--esko-green);
+}
+.esko-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+.esko-card img {
+    max-width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.esko-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--esko-dark);
+}
+.esko-card .price {
+    color: var(--esko-green);
+    font-weight: 700;
+    font-size: 22px;
+    margin: 10px 0;
+}
+.esko-card .old-price {
+    color: #999;
+    font-size: 14px;
+    text-decoration: line-through;
+    margin-left: 8px;
+    font-weight: 400;
+}
+.esko-card .btn-esko {
+    padding: 10px 25px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ===== फुटर ===== */
+.esko-footer {
+    background: var(--esko-dark);
+    color: #AAAAAA;
+    padding: 40px 40px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    border-top: 3px solid var(--esko-green);
+}
+.esko-footer h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+.esko-footer a {
+    color: #AAAAAA;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+.esko-footer a:hover { color: var(--esko-green); }
+.esko-footer .copyright {
+    grid-column: span 4;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* ===== मोबाइल रिस्पॉन्सिव ===== */
+@media (max-width: 768px) {
+    .esko-header { flex-direction: column; gap: 15px; padding: 20px; }
+    .esko-nav a { margin: 0 10px; }
+    .esko-hero h1 { font-size: 32px; }
+    .esko-grid { grid-template-columns: 1fr 1fr; }
+    .esko-footer { grid-template-columns: 1fr 1fr; }
+    .esko-footer .copyright { grid-column: span 2; }
+}
