@@ -1,762 +1,632 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMP Business - Premium Billing Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0062cc;
-            --secondary: #ff6b00;
-            --accent: #00c2ff;
-            --dark: #1a1a1a;
-            --light: #ffffff;
-            --gray: #f8f9fa;
-            --text: #333333;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* Premium Navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 2rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
-        }
-        
-        .navbar.scrolled {
-            padding: 0.8rem 2rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .login-btn {
-            background: var(--gradient);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-        }
-        
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RCM KD GROUP | Together for a Better Tomorrow</title>
+<meta name="description" content="RCM KD Group — premium health, beauty, home & lifestyle products. Meet our Star Leaders and trusted brands." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { DEFAULT: '#0F766E', light: '#14B8A6', dark: '#115E59' },
+          gold: { DEFAULT: '#F59E0B', light: '#FCD34D', dark: '#B45309' },
+          ink: '#0F172A',
+          mist: '#F8FAFC',
+        },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], heading: ['Montserrat', 'sans-serif'] },
+        boxShadow: {
+          soft: '0 4px 24px rgba(0,0,0,0.06)',
+          card: '0 8px 40px rgba(0,0,0,0.08)',
+          glow: '0 0 30px rgba(245, 158, 11, 0.4)',
+        },
+      },
+    },
+  };
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+  
+  /* Reveal Animation */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  
+  /* Utility */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* Hero Section */
-        .hero {
-            background: var(--gradient);
-            color: white;
-            padding: 160px 2rem 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-        }
-        
-        .cta-button {
-            background: var(--secondary);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.6s ease;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 107, 0, 0.4);
-        }
-        
-        /* Stats Section */
-        .stats {
-            background: var(--light);
-            padding: 80px 2rem;
-            text-align: center;
-        }
-        
-        .stats-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 2.5rem 1.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stat-label {
-            color: var(--text);
-            font-weight: 500;
-        }
-        
-        /* Features Section */
-        .features {
-            background: var(--gray);
-            padding: 100px 2rem;
-            text-align: center;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 4rem;
-            color: #666;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 0;
-            background: var(--gradient);
-            transition: height 0.5s ease;
-        }
-        
-        .feature-card:hover::before {
-            height: 100%;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        .feature-desc {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            background: var(--gradient);
-            color: white;
-            padding: 100px 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,128L48,117.3C96,107,192,85,288,112C384,139,480,213,576,224C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .cta-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 2.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .cta-btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .cta-btn.primary {
-            background: white;
-            color: var(--primary);
-        }
-        
-        .cta-btn.secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 80px 2rem 40px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-logo i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .footer-desc {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            color: #ccc;
-        }
-        
-        .footer-heading {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-links a i {
-            margin-right: 10px;
-            color: var(--accent);
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid #444;
-            text-align: center;
-            color: #ccc;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .cta-title {
-                font-size: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .feature-card {
-                padding: 2rem 1.5rem;
-            }
-        }
+  /* ================= PREMIUM BRAND NAME STYLING ================= */
+  .brand-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    background: linear-gradient(to right, #115E59 0%, #0F766E 30%, #F59E0B 70%, #FCD34D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    position: relative;
+  }
+  
+  .brand-name-glow {
+    filter: drop-shadow(0px 4px 15px rgba(245, 158, 11, 0.3));
+  }
 
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-    </style>
+  .brand-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: #64748B;
+    text-transform: uppercase;
+  }
+
+  /* ================= LOGO & ANIMATIONS ================= */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  @keyframes glowPulse {
+    0% { filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.5)); }
+    50% { filter: drop-shadow(0 0 35px rgba(15, 118, 110, 0.7)); }
+    100% { filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.5)); }
+  }
+
+  @keyframes spinIn {
+    from { transform: rotate(-180deg) scale(0); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+  }
+
+  .logo-float {
+    animation: float 5s ease-in-out infinite, glowPulse 6s ease-in-out infinite;
+  }
+
+  .logo-spin-in {
+    animation: spinIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  @keyframes heroIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
+  .hero-anim { animation: heroIn .9s ease both; }
+</style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo"><i class="fas fa-rocket"></i>DMP Business</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="policy.html">Privacy policy </>
-                <a href="registration.html">Register</a>
-                <a href="billing.html">Billing</a>
-                <a href="contact.html">Contact</a>
-                <a href="login.html" class="login-btn">Login</a>
-                <a href="admin-login.html"> admin access</a>
-            </div>
-        </div>
-    </nav>
+<body class="bg-white text-ink antialiased">
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="animate">Revolutionize Your Business with Premium Billing Solutions</h1>
-            <p class="animate delay-1">Experience the most advanced, user-friendly billing system designed for modern businesses. Fast, secure, and reliable.</p>
-            <a href="registration.html" class="cta-button animate delay-2">Get Started Free <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-grid">
-                <div class="stat-card animate">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Happy Businesses</div>
-                </div>
-                <div class="stat-card animate delay-1">
-                    <div class="stat-number">50,000+</div>
-                    <div class="stat-label">Bills Generated</div>
-                </div>
-                <div class="stat-card animate delay-2">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support Available</div>
-                </div>
-                <div class="stat-card animate delay-3">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">Uptime Guarantee</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <h2 class="section-title">Why Choose DMP Business?</h2>
-        <p class="section-subtitle">Discover the features that make us the preferred choice for businesses worldwide</p>
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-ink/5 shadow-soft">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-24 items-center justify-between gap-3">
+      
+      <!-- Brand Logo & Name Highlight -->
+      <a href="#hero" class="flex items-center gap-4 shrink-0 group">
+        <!-- Logo Attached -->
+        <img src="logo.png" alt="RCM KD GROUP Logo" class="h-16 w-16 sm:h-20 sm:w-20 object-contain logo-float" onerror="this.style.display='none';">
         
-        <div class="feature-grid">
-            <div class="feature-card animate">
-                <div class="feature-icon">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                </div>
-                <h3 class="feature-title">Professional GST Billing</h3>
-                <p class="feature-desc">Automated GST calculation with professional invoice templates that impress your clients.</p>
-            </div>
-            
-            <div class="feature-card animate delay-1">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3 class="feature-title">Fully Responsive</h3>
-                <p class="feature-desc">Access your billing system from any device - desktop, tablet, or smartphone.</p>
-            </div>
-            
-            <div class="feature-card animate delay-2">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3 class="feature-title">Lightning Fast</h3>
-                <p class="feature-desc">Generate bills in seconds with our optimized and high-performance platform.</p>
-            </div>
-            
-            <div class="feature-card animate delay-3">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 class="feature-title">Bank-Grade Security</h3>
-                <p class="feature-desc">Your data is protected with enterprise-level security and encryption.</p>
-            </div>
-            
-            <div class="feature-card animate">
-                <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="feature-title">Business Analytics</h3>
-                <p class="feature-desc">Gain insights with detailed reports and analytics to grow your business.</p>
-            </div>
-            
-            <div class="feature-card animate delay-1">
-                <div class="feature-icon">
-                    <i class="fas fa-cloud"></i>
-                </div>
-                <h3 class="feature-title">Cloud Backup</h3>
-                <p class="feature-desc">Automatic cloud backups ensure you never lose important data.</p>
-            </div>
+        <!-- Main Brand Name Highlighted -->
+        <div class="flex flex-col justify-center">
+          <h1 class="brand-name brand-name-glow text-2xl sm:text-3xl lg:text-4xl leading-none">RCM KD GROUP</h1>
+          <span class="brand-tag mt-2 text-[9px] sm:text-[11px]">Together for a Better Tomorrow</span>
         </div>
-    </section>
+      </a>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2 class="cta-title">Ready to Transform Your Business?</h2>
-            <p>Join thousands of successful businesses using DMP Business solutions</p>
-            <div class="cta-buttons">
-                <a href="registration.html" class="cta-btn primary">Get Started Free</a>
-                <a href="contact.html" class="cta-btn secondary">Contact Us</a>
-            </div>
+      <nav class="hidden xl:flex items-center gap-6">
+        <a href="#hero" class="text-sm font-semibold text-ink/70 hover:text-brand transition">Home</a>
+        <a href="#categories" class="text-sm font-semibold text-ink/70 hover:text-brand transition">Categories</a>
+        <a href="#products" class="text-sm font-semibold text-ink/70 hover:text-brand transition">Products</a>
+        <a href="#leaders" class="text-sm font-semibold text-ink/70 hover:text-brand transition">Star Leaders</a>
+        <a href="#brands" class="text-sm font-semibold text-ink/70 hover:text-brand transition">Brands</a>
+        <a href="#about" class="text-sm font-semibold text-ink/70 hover:text-brand transition">About</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-xs font-bold text-white hover:bg-brand-dark transition shadow-md">
+          <i data-lucide="phone" class="h-4 w-4"></i> Contact Us
+        </a>
+        <button id="menu-btn" class="xl:hidden p-2 text-ink/60 hover:text-brand" aria-label="Menu">
+          <i data-lucide="menu" class="h-7 w-7"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div id="menu-overlay" class="hidden fixed inset-0 z-40 bg-black/30 backdrop-blur-sm xl:hidden"></div>
+<aside id="mobile-menu" class="fixed right-0 top-0 z-50 h-full w-80 max-w-[85vw] translate-x-full bg-white p-6 shadow-2xl transition-transform duration-300 xl:hidden">
+  <div class="flex items-center justify-between border-b pb-4">
+    <h2 class="brand-name text-xl">RCM KD GROUP</h2>
+    <button id="menu-close" class="p-2 text-ink/60 hover:text-brand"><i data-lucide="x" class="h-6 w-6"></i></button>
+  </div>
+  <nav class="mt-6 flex flex-col gap-5">
+    <a href="#hero" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Home</a>
+    <a href="#categories" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Categories</a>
+    <a href="#products" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Products</a>
+    <a href="#leaders" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Star Leaders</a>
+    <a href="#brands" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Brands</a>
+    <a href="#about" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">About</a>
+    <a href="#contact" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Contact</a>
+  </nav>
+</aside>
+
+<!-- ================= HERO ================= -->
+<section id="hero" class="relative h-[85vh] min-h-[550px] overflow-hidden">
+  <div id="hero-slide-container" class="absolute inset-0"></div>
+  
+  <div class="relative z-10 flex h-full items-center">
+    <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
+        
+        <!-- Hero Content -->
+        <div id="hero-content" class="w-full lg:w-3/5 text-center lg:text-left"></div>
+        
+        <!-- Mega Floating Logo -->
+        <div class="w-full lg:w-2/5 flex justify-center lg:justify-end">
+           <img src="logo.png" alt="RCM KD Group" class="w-56 h-56 sm:w-72 sm:h-72 lg:w-[22rem] lg:h-[22rem] object-contain logo-float logo-spin-in drop-shadow-2xl">
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div>
-                <div class="footer-logo"><i class="fas fa-rocket"></i>DMP Business</div>
-                <p class="footer-desc">Premium billing solutions for modern businesses. Empowering growth through innovation and excellence.</p>
-            </div>
-            <div>
-                <h3 class="footer-heading">Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li><a href="registration.html"><i class="fas fa-user-plus"></i> Register</a></li>
-                    <li><a href="billing.html"><i class="fas fa-file-invoice"></i> Billing</a></li>
-                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="footer-heading">Contact Info</h3>
-                <ul class="footer-links">
-                    <li><a href="tel:9919559898"><i class="fas fa-phone"></i> 9919559898</a></li>
-                    <li><a href="mailto:support@dmpbusiness.com"><i class="fas fa-envelope"></i> support@dmpbusiness.com</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Uttar Pradesh, India</a></li>
-                </ul>
-            </div>
+      </div>
+    </div>
+  </div>
+  
+  <button id="hero-prev" class="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/20 p-3 text-white backdrop-blur-md hover:bg-brand transition"><i data-lucide="chevron-left" class="h-6 w-6"></i></button>
+  <button id="hero-next" class="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/20 p-3 text-white backdrop-blur-md hover:bg-brand transition"><i data-lucide="chevron-right" class="h-6 w-6"></i></button>
+  <div id="hero-dots" class="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2"></div>
+</section>
+
+<!-- ================= ABOUT (Moved up for brand focus) ================= -->
+<section id="about" class="bg-mist py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div class="reveal">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand mb-2 block">About Us</span>
+        <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl mb-4">
+          Welcome to <span class="brand-name text-4xl sm:text-5xl">RCM KD GROUP</span>
+        </h2>
+        <p class="text-sm leading-relaxed text-ink/70 mb-4">Since our inception, RCM KD Group has grown from a small distribution network into a trusted name in direct selling. We believe that good products and honest relationships can transform lives.</p>
+        <p class="text-sm leading-relaxed text-ink/70">Today, our catalogue spans food, health, beauty, home essentials, and fashion — served through a network of passionate entrepreneurs across India.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-2xl bg-white p-5 shadow-soft reveal hover:-translate-y-1 transition border border-ink/5">
+          <i data-lucide="target" class="h-7 w-7 text-brand"></i>
+          <h3 class="mt-3 text-sm font-bold text-ink">Our Mission</h3>
+          <p class="mt-1 text-xs leading-relaxed text-ink/60">Make premium wellness and lifestyle products accessible to every household.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 DMP Business. All rights reserved.</p>
+        <div class="rounded-2xl bg-white p-5 shadow-soft reveal hover:-translate-y-1 transition border border-ink/5">
+          <i data-lucide="eye" class="h-7 w-7 text-brand"></i>
+          <h3 class="mt-3 text-sm font-bold text-ink">Our Vision</h3>
+          <p class="mt-1 text-xs leading-relaxed text-ink/60">A world where entrepreneurship and well-being go hand in hand.</p>
         </div>
-    </footer>
+        <div class="rounded-2xl bg-white p-5 shadow-soft reveal hover:-translate-y-1 transition border border-ink/5">
+          <i data-lucide="heart" class="h-7 w-7 text-brand"></i>
+          <h3 class="mt-3 text-sm font-bold text-ink">Our Values</h3>
+          <p class="mt-1 text-xs leading-relaxed text-ink/60">Integrity, transparency, and customer-first thinking guide us.</p>
+        </div>
+        <div class="rounded-2xl bg-white p-5 shadow-soft reveal hover:-translate-y-1 transition border border-ink/5">
+          <i data-lucide="users" class="h-7 w-7 text-brand"></i>
+          <h3 class="mt-3 text-sm font-bold text-ink">Our Community</h3>
+          <p class="mt-1 text-xs leading-relaxed text-ink/60">Over 10,000 active associates and Star Leaders growing together.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+<!-- ================= CATEGORIES ================= -->
+<section id="categories" class="py-16 sm:py-24 bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand">Explore</span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-ink">Our Categories</h2>
+      <p class="mx-auto mt-2 max-w-md text-sm text-ink/50">Curated collections crafted for everyday wellness and lifestyle.</p>
+    </div>
+    <div id="categories-grid" class="mt-10 flex gap-6 overflow-x-auto pb-4 scrollbar-hide sm:grid sm:grid-cols-3 sm:gap-8 sm:overflow-visible lg:grid-cols-6"></div>
+  </div>
+</section>
 
-        // Animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.animate');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.visibility = 'visible';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            animatedElements.forEach(element => {
-                element.style.visibility = 'hidden';
-                observer.observe(element);
-            });
-        });
-    </script>
+<!-- ================= PRODUCTS ================= -->
+<section id="products" class="bg-mist py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand">Featured</span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-ink">Our Products</h2>
+      <p class="mx-auto mt-2 max-w-md text-sm text-ink/50">Explore the quality and care that goes into every product we offer.</p>
+    </div>
+    <div id="products-grid" class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- ================= STAR LEADERS ================= -->
+<section id="leaders" class="py-16 sm:py-24 bg-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand">Leadership</span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-ink">Our Best Star Leaders</h2>
+      <p class="mx-auto mt-2 max-w-xl text-sm text-ink/50">Meet the people who inspire, mentor, and lead by example.</p>
+    </div>
+    <div id="leaders-grid" class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
+  </div>
+</section>
+
+<!-- ================= BRANDS ================= -->
+<section id="brands" class="bg-mist py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand">Trusted Names</span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-ink">Our Brands</h2>
+    </div>
+    <div id="brands-grid" class="mt-12 flex gap-6 overflow-x-auto pb-4 scrollbar-hide sm:grid sm:grid-cols-3 sm:gap-8 sm:overflow-visible lg:grid-cols-6"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="py-16 sm:py-24 bg-white">
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand">Get in Touch</span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-ink">We'd Love to Hear From You</h2>
+    </div>
+    <form id="contact-form" class="mt-8 space-y-4">
+      <input name="name" type="text" placeholder="Your Name" class="w-full rounded-xl border border-ink/10 bg-mist px-4 py-3 text-sm outline-none focus:border-brand/40 focus:ring-2 focus:ring-brand/10" />
+      <input name="email" type="email" placeholder="Email Address" class="w-full rounded-xl border border-ink/10 bg-mist px-4 py-3 text-sm outline-none focus:border-brand/40 focus:ring-2 focus:ring-brand/10" />
+      <textarea name="message" rows="4" placeholder="Your Message" class="w-full rounded-xl border border-ink/10 bg-mist px-4 py-3 text-sm outline-none focus:border-brand/40 focus:ring-2 focus:ring-brand/10"></textarea>
+      <button type="submit" class="w-full rounded-full bg-brand py-3 text-sm font-bold text-white hover:bg-brand-dark transition shadow-md">Send Message</button>
+      <p id="form-status" class="mt-2 text-center text-xs font-semibold"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-ink/5 bg-ink text-white/70">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      
+      <!-- Footer Brand Highlight -->
+      <div>
+        <a href="#hero" class="inline-flex items-center gap-3 mb-4">
+          <img src="logo.png" alt="RCM KD Group Logo" class="h-14 w-14 object-contain">
+          <h2 class="brand-name text-2xl drop-shadow-md">RCM KD GROUP</h2>
+        </a>
+        <p class="text-xs leading-relaxed">Premium products, honest relationships, and a community that grows together. RCM KD Group is your partner in everyday wellness and lifestyle.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="#" class="rounded-full bg-white/10 p-2 text-white hover:bg-brand transition" aria-label="Facebook"><i data-lucide="facebook" class="h-4 w-4"></i></a>
+          <a href="#" class="rounded-full bg-white/10 p-2 text-white hover:bg-brand transition" aria-label="Instagram"><i data-lucide="instagram" class="h-4 w-4"></i></a>
+          <a href="#" class="rounded-full bg-white/10 p-2 text-white hover:bg-brand transition" aria-label="LinkedIn"><i data-lucide="linkedin" class="h-4 w-4"></i></a>
+          <a href="#" class="rounded-full bg-white/10 p-2 text-white hover:bg-brand transition" aria-label="YouTube"><i data-lucide="youtube" class="h-4 w-4"></i></a>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="text-sm font-bold text-white mb-4">Quick Links</h3>
+        <ul class="space-y-3">
+          <li><a href="#about" class="text-xs hover:text-brand-light transition">About Us</a></li>
+          <li><a href="#contact" class="text-xs hover:text-brand-light transition">Contact Us</a></li>
+          <li><a href="#leaders" class="text-xs hover:text-brand-light transition">Star Leaders</a></li>
+          <li><a href="#brands" class="text-xs hover:text-brand-light transition">Our Brands</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-sm font-bold text-white mb-4">Customer Support</h3>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-xs hover:text-brand-light transition">Privacy Policy</a></li>
+          <li><a href="#" class="text-xs hover:text-brand-light transition">Terms &amp; Conditions</a></li>
+          <li><a href="#" class="text-xs hover:text-brand-light transition">Return Policy</a></li>
+          <li><a href="#" class="text-xs hover:text-brand-light transition">FAQs</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-sm font-bold text-white mb-4">Get in Touch</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3 text-xs"><i data-lucide="mail" class="h-4 w-4 text-brand-light"></i>support@rcmkdgroup.com</li>
+          <li class="flex items-center gap-3 text-xs"><i data-lucide="phone" class="h-4 w-4 text-brand-light"></i>+91 98765 43210</li>
+          <li class="flex items-center gap-3 text-xs"><i data-lucide="map-pin" class="h-4 w-4 text-brand-light"></i>Ranchi, Jharkhand, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 border-t border-white/10 pt-6 text-center text-xs">
+      © <span id="year"></span> RCM KD Group. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ DATA ============ */
+const categories = [
+  { id: 'food-grocery', name: 'Food & Grocery', image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=400&fit=crop&q=80' },
+  { id: 'health-wellness', name: 'Health & Wellness', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop&q=80' },
+  { id: 'personal-care', name: 'Personal Care', image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop&q=80' },
+  { id: 'beauty-products', name: 'Beauty Products', image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=400&fit=crop&q=80' },
+  { id: 'home-essentials', name: 'Home Essentials', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop&q=80' },
+  { id: 'fashion-lifestyle', name: 'Fashion & Lifestyle', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=400&fit=crop&q=80' },
+];
+
+const products = [
+  {
+    id: 'p1', name: 'Nysa Foot Cream',
+    category: 'Personal Care',
+    image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=600&fit=crop&q=80',
+    description: 'A rich, nourishing foot cream with natural moisturizers that heal cracked heels and keep feet soft all day.',
+  },
+  {
+    id: 'p2', name: 'Nutricharge Kesar Pista',
+    category: 'Health & Wellness',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop&q=80',
+    description: 'A delicious nutrition drink with the goodness of saffron, pistachio and essential vitamins.',
+  },
+  {
+    id: 'p3', name: 'Swechha Popular Tea',
+    category: 'Food & Grocery',
+    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&h=600&fit=crop&q=80',
+    description: 'A perfectly blended Assam tea with rich aroma and refreshing taste. Crafted for that perfect cup.',
+  },
+  {
+    id: 'p4', name: 'KeySoul Hair Serum',
+    category: 'Beauty Products',
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=600&fit=crop&q=80',
+    description: 'Lightweight, non-greasy hair serum enriched with natural oils. Frizz-free, shiny hair with a silky finish.',
+  },
+  {
+    id: 'p5', name: 'Herbal Face Wash',
+    category: 'Personal Care',
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=600&fit=crop&q=80',
+    description: 'Gentle daily face wash with neem and aloe vera. Deep cleanses while preserving natural moisture.',
+  },
+  {
+    id: 'p6', name: 'Organic Honey 500g',
+    category: 'Food & Grocery',
+    image: 'https://images.unsplash.com/photo-1587049354704-fc4b1d6d1d2f?w=600&h=600&fit=crop&q=80',
+    description: '100% pure, raw and unprocessed honey sourced directly from trusted beekeepers.',
+  },
+];
+
+const leaders = [
+  { name: 'Priya Sharma', rank: 'Star Diamond', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80', intro: 'Building a legacy of empowerment through consistent mentorship and ethical leadership.' },
+  { name: 'Arjun Mehta', rank: 'Star Sapphire', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&q=80', intro: 'Turning everyday wellness into a sustainable business model for rural communities.' },
+  { name: 'Neha Kapoor', rank: 'Star Ruby', photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&q=80', intro: 'Championing clean beauty and personal care with a customer-first philosophy.' },
+  { name: 'Vikram Singh', rank: 'Star Diamond', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&q=80', intro: 'Scaling teams with discipline, systems, and a deep belief in the RCM KD mission.' },
+];
+
+const brands = [
+  { name: 'Nysa', logo: 'https://ui-avatars.com/api/?name=Nysa&background=0F766E&color=fff&size=128&bold=true' },
+  { name: 'Nutricharge', logo: 'https://ui-avatars.com/api/?name=Nutricharge&background=F59E0B&color=fff&size=128&bold=true' },
+  { name: 'Swechha', logo: 'https://ui-avatars.com/api/?name=Swechha&background=115E59&color=fff&size=128&bold=true' },
+  { name: 'Health Guard', logo: 'https://ui-avatars.com/api/?name=Health+Guard&background=1E40AF&color=fff&size=128&bold=true' },
+  { name: 'Key Soul', logo: 'https://ui-avatars.com/api/?name=Key+Soul&background=BE185D&color=fff&size=128&bold=true' },
+  { name: 'Good Dot', logo: 'https://ui-avatars.com/api/?name=Good+Dot&background=15803D&color=fff&size=128&bold=true' },
+];
+
+const slides = [
+  {
+    title: 'Wellness That Works',
+    subtitle: 'Discover premium health and personal care products trusted by millions across India.',
+    cta: 'Explore Products', href: '#products',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&h=700&fit=crop&q=80',
+  },
+  {
+    title: 'Empower Your Future',
+    subtitle: 'Join a community of Star Leaders building sustainable and rewarding businesses.',
+    cta: 'Meet Our Leaders', href: '#leaders',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=700&fit=crop&q=80',
+  },
+  {
+    title: 'A Legacy of Trust',
+    subtitle: 'Serving millions of families with quality products and honest relationships.',
+    cta: 'About Us', href: '#about',
+    image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1600&h=700&fit=crop&q=80',
+  },
+];
+
+let currentSlide = 0;
+let slideInterval;
+
+/* ============ UTILS ============ */
+function refreshIcons() {
+  if (window.lucide) lucide.createIcons();
+}
+
+/* ============ HERO ============ */
+function renderHero() {
+  const s = slides[currentSlide];
+  document.getElementById('hero-slide-container').innerHTML = `
+    <div class="hero-anim absolute inset-0">
+      <img src="${s.image}" alt="${s.title}" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+    </div>`;
+  
+  document.getElementById('hero-content').innerHTML = `
+    <div class="hero-anim">
+      <!-- Highlighting Brand Name Here Too -->
+      <h2 class="text-4xl sm:text-6xl font-black text-white mb-2 drop-shadow-lg">Welcome to <br> <span class="brand-name text-5xl sm:text-7xl">RCM KD GROUP</span></h2>
+      <div class="h-1 w-24 bg-gold rounded-full mb-6 mx-auto lg:mx-0"></div>
+      
+      <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3">${s.title}</h3>
+      <p class="text-base text-white/80 sm:text-lg max-w-lg mx-auto lg:mx-0">${s.subtitle}</p>
+      
+      <div class="mt-8 flex justify-center lg:justify-start">
+        <a href="${s.href}" class="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-3.5 text-sm font-bold text-white shadow-glow hover:bg-brand-dark transition transform hover:scale-105 border border-brand-light/30">
+          ${s.cta} <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+    </div>`;
+    
+  const dots = document.getElementById('hero-dots');
+  dots.innerHTML = slides.map((_, i) =>
+    `<button data-dot="${i}" class="h-2 rounded-full transition-all ${i === currentSlide ? 'w-8 bg-gold' : 'w-2 bg-white/50'}" aria-label="Slide ${i + 1}"></button>`
+  ).join('');
+  dots.querySelectorAll('[data-dot]').forEach(b => b.onclick = () => { currentSlide = +b.dataset.dot; renderHero(); resetTimer(); });
+  refreshIcons();
+}
+
+function resetTimer() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(() => { currentSlide = (currentSlide + 1) % slides.length; renderHero(); }, 6000);
+}
+
+/* ============ CATEGORIES ============ */
+function renderCategories() {
+  document.getElementById('categories-grid').innerHTML = categories.map(c => `
+    <div class="flex shrink-0 flex-col items-center">
+      <a href="#products" class="group block text-center">
+        <div class="relative h-24 w-24 sm:h-28 sm:w-28 overflow-hidden rounded-full shadow-soft ring-4 ring-white group-hover:ring-gold transition duration-300">
+          <img src="${c.image}" alt="${c.name}" class="h-full w-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" />
+        </div>
+        <p class="mt-3 text-xs sm:text-sm font-bold text-ink/80 group-hover:text-brand transition">${c.name}</p>
+      </a>
+    </div>`).join('');
+}
+
+/* ============ PRODUCTS ============ */
+function renderProducts() {
+  document.getElementById('products-grid').innerHTML = products.map(p => `
+    <div class="group rounded-2xl bg-white p-4 shadow-soft hover:shadow-card transition reveal border border-ink/5">
+      <div class="aspect-square overflow-hidden rounded-xl bg-mist">
+        <img src="${p.image}" alt="${p.name}" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+      </div>
+      <div class="mt-4">
+        <span class="inline-block rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand">${p.category}</span>
+        <h3 class="mt-2 text-lg font-extrabold text-ink">${p.name}</h3>
+        <p class="mt-1.5 text-xs leading-relaxed text-ink/60 line-clamp-3">${p.description}</p>
+      </div>
+    </div>`).join('');
+}
+
+/* ============ LEADERS ============ */
+function renderLeaders() {
+  document.getElementById('leaders-grid').innerHTML = leaders.map(l => `
+    <div class="group flex flex-col items-center rounded-2xl bg-white p-6 text-center shadow-card hover:-translate-y-1 hover:shadow-xl transition reveal border border-ink/5">
+      <div class="relative h-28 w-28 overflow-hidden rounded-full ring-4 ring-brand/10 group-hover:ring-gold transition duration-300">
+        <img src="${l.photo}" alt="${l.name}" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+      </div>
+      <h3 class="mt-4 text-lg font-extrabold text-ink">${l.name}</h3>
+      <span class="mt-1 inline-block rounded-full bg-gold/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gold-dark">${l.rank}</span>
+      <p class="mt-3 text-sm leading-relaxed text-ink/60 line-clamp-3">${l.intro}</p>
+    </div>`).join('');
+}
+
+/* ============ BRANDS ============ */
+function renderBrands() {
+  document.getElementById('brands-grid').innerHTML = brands.map(b => `
+    <div class="flex shrink-0 flex-col items-center">
+      <div class="group block text-center">
+        <div class="flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center overflow-hidden rounded-full bg-white shadow-soft ring-4 ring-white group-hover:ring-gold transition duration-300">
+          <img src="${b.logo}" alt="${b.name}" class="h-full w-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" />
+        </div>
+        <p class="mt-3 text-xs sm:text-sm font-bold text-ink/80 group-hover:text-brand transition">${b.name}</p>
+      </div>
+    </div>`).join('');
+}
+
+/* ============ SEARCH ============ */
+function setupSearch() {
+  const input = document.getElementById('search-input');
+  const results = document.getElementById('search-results');
+  if (!input) return;
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    if (!q) { results.classList.add('hidden'); return; }
+    const matches = products.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q)
+    );
+    if (matches.length === 0) {
+      results.innerHTML = `<div class="p-4 text-sm text-ink/50">No products found.</div>`;
+    } else {
+      results.innerHTML = matches.map(p => `
+        <a href="#products" class="flex items-center gap-3 px-4 py-3 text-sm hover:bg-mist transition" data-close>
+          <img src="${p.image}" alt="${p.name}" class="h-8 w-8 rounded-lg object-cover" />
+          <div class="flex-1 min-w-0">
+            <p class="truncate font-medium text-ink">${p.name}</p>
+            <p class="text-[10px] uppercase tracking-wider text-brand">${p.category}</p>
+          </div>
+        </a>`).join('');
+      results.querySelectorAll('[data-close]').forEach(el =>
+        el.addEventListener('click', () => { results.classList.add('hidden'); input.value = ''; })
+      );
+    }
+    results.classList.remove('hidden');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#search-input') && !e.target.closest('#search-results')) {
+      results.classList.add('hidden');
+    }
+  });
+}
+
+/* ============ MOBILE MENU ============ */
+function setupMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('menu-overlay');
+  const open = () => { menu.classList.remove('translate-x-full'); overlay.classList.remove('hidden'); };
+  const close = () => { menu.classList.add('translate-x-full'); overlay.classList.add('hidden'); };
+  document.getElementById('menu-btn').onclick = open;
+  document.getElementById('menu-close').onclick = close;
+  overlay.onclick = close;
+  document.querySelectorAll('.mobile-link').forEach(l => l.onclick = close);
+}
+
+/* ============ HERO CONTROLS ============ */
+function setupHeroControls() {
+  document.getElementById('hero-prev').onclick = () => { currentSlide = (currentSlide - 1 + slides.length) % slides.length; renderHero(); resetTimer(); };
+  document.getElementById('hero-next').onclick = () => { currentSlide = (currentSlide + 1) % slides.length; renderHero(); resetTimer(); };
+}
+
+/* ============ CONTACT FORM ============ */
+function setupContactForm() {
+  document.getElementById('contact-form').onsubmit = (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const s = document.getElementById('form-status');
+    if (!f.name.value.trim() || !f.email.value.trim() || !f.message.value.trim()) {
+      s.textContent = 'Please fill in all fields.';
+      s.className = 'mt-2 text-center text-xs font-semibold text-red-500';
+      return;
+    }
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value)) {
+      s.textContent = 'Please enter a valid email address.';
+      s.className = 'mt-2 text-center text-xs font-semibold text-red-500';
+      return;
+    }
+    s.textContent = 'Thank you! Your message has been received.';
+    s.className = 'mt-2 text-center text-xs font-semibold text-green-600';
+    f.reset();
+    setTimeout(() => { s.textContent = ''; }, 4000);
+  };
+}
+
+/* ============ REVEAL ============ */
+function setupReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+/* ============ INIT ============ */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+  renderHero(); resetTimer();
+  renderCategories();
+  renderProducts();
+  renderLeaders();
+  renderBrands();
+  setupSearch();
+  setupMobileMenu();
+  setupHeroControls();
+  setupContactForm();
+  refreshIcons();
+  setTimeout(setupReveal, 100);
+});
+</script>
 </body>
 </html>
