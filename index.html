@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RCM KD GROUP | Premium Business</title>
-<meta name="description" content="RCM KD Group — Together for a Better Tomorrow. Premium wellness, lifestyle, and leadership." />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -55,7 +54,6 @@
     -webkit-text-fill-color: transparent;
     animation: shine 4s linear infinite;
     position: relative;
-    text-shadow: 0px 4px 15px rgba(212, 175, 55, 0.2);
   }
 
   @keyframes shine { to { background-position: 200% center; } }
@@ -83,8 +81,8 @@
 
   /* Glassmorphism */
   .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.3); }
-  .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); }
-
+  
+  /* Line Clamp for description */
   .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 </style>
 </head>
@@ -95,7 +93,6 @@
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-24 items-center justify-between gap-3">
       
-      <!-- Logo & Name -->
       <a href="#hero" class="flex items-center gap-3 shrink-0 group">
         <img src="logo.png" alt="RCM KD GROUP Logo" class="h-16 w-16 sm:h-20 sm:w-20 object-contain logo-float drop-shadow-xl" onerror="this.style.display='none';">
         <div class="flex flex-col justify-center">
@@ -107,27 +104,22 @@
       <nav class="hidden xl:flex items-center gap-6">
         <a href="#about" class="text-sm font-bold text-ink/70 hover:text-brand transition">About</a>
         <a href="#products" class="text-sm font-bold text-ink/70 hover:text-brand transition">Products</a>
+        <a href="#recipes" class="text-sm font-bold text-ink/70 hover:text-brand transition">Recipes</a>
         <a href="#leaders" class="text-sm font-bold text-ink/70 hover:text-brand transition">Leaders</a>
-        <a href="#brands" class="text-sm font-bold text-ink/70 hover:text-brand transition">Brands</a>
+        <a href="#team" class="text-sm font-bold text-ink/70 hover:text-brand transition">Team</a>
       </nav>
 
       <div class="flex items-center gap-2 sm:gap-4">
-        <!-- Cart Icon -->
         <button onclick="openModal('cartModal')" class="relative p-2 text-ink/70 hover:text-brand transition group">
           <i data-lucide="shopping-cart" class="h-6 w-6 group-hover:scale-110 transition"></i>
           <span id="cart-count" class="absolute top-0 right-0 bg-gold text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full hidden">0</span>
         </button>
-        
-        <!-- User Login -->
         <button onclick="openModal('authModal')" class="p-2 text-ink/70 hover:text-brand transition group">
           <i data-lucide="user" class="h-6 w-6 group-hover:scale-110 transition"></i>
         </button>
-
-        <!-- Contact CTA -->
         <a href="#contact" class="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand to-brand-light px-6 py-2.5 text-xs font-bold text-white hover:shadow-glow transition">
           Contact Us
         </a>
-
         <button id="menu-btn" class="xl:hidden p-2 text-ink/70 hover:text-brand" aria-label="Menu">
           <i data-lucide="menu" class="h-7 w-7"></i>
         </button>
@@ -146,15 +138,15 @@
   <nav class="flex flex-col gap-5">
     <a href="#about" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">About Us</a>
     <a href="#products" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Products</a>
+    <a href="#recipes" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Gooddot Recipes</a>
     <a href="#leaders" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Star Leaders</a>
-    <a href="#brands" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Our Brands</a>
+    <a href="#team" class="mobile-link text-base font-bold text-ink/80 hover:text-brand transition">Team Members</a>
     <a href="#" onclick="openModal('authModal'); document.getElementById('menu-close').click();" class="text-base font-bold text-brand hover:text-brand-dark transition flex items-center gap-2 mt-4 border-t pt-4"><i data-lucide="log-in" class="h-5 w-5"></i> Login / Register</a>
   </nav>
 </aside>
 
 <!-- ================= HERO ================= -->
 <section id="hero" class="relative h-[90vh] min-h-[600px] overflow-hidden bg-ink">
-  <!-- Background Image with Zoom effect -->
   <div class="absolute inset-0 hero-bg">
     <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop&q=80" alt="Business" class="w-full h-full object-cover opacity-30" />
     <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-transparent"></div>
@@ -166,7 +158,7 @@
         
         <div class="w-full lg:w-3/5 text-center lg:text-left reveal">
           <span class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-gold-light font-bold tracking-widest text-xs uppercase mb-6 backdrop-blur-md">
-            Welcome to the Future
+            Premium RCM Products
           </span>
           <h1 class="text-5xl sm:text-7xl font-black text-white leading-tight mb-4">
             We Are <br>
@@ -178,9 +170,6 @@
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <a href="#products" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 rounded-full bg-gradient-to-r from-gold to-gold-dark px-8 py-4 text-sm font-bold text-white shadow-glow hover:scale-105 transition">
               Explore Products <i data-lucide="arrow-right" class="h-4 w-4"></i>
-            </a>
-            <a href="#about" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 rounded-full bg-white/10 border border-white/20 px-8 py-4 text-sm font-bold text-white hover:bg-white/20 transition backdrop-blur-md">
-              Learn More
             </a>
           </div>
         </div>
@@ -194,58 +183,63 @@
   </div>
 </section>
 
-<!-- ================= ABOUT ================= -->
-<section id="about" class="py-24 bg-white relative">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid items-center gap-16 lg:grid-cols-2">
-      <div class="reveal">
-        <span class="text-xs font-bold uppercase tracking-widest text-brand bg-brand/10 px-3 py-1 rounded-full mb-4 inline-block">Our Story</span>
-        <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl mb-6">
-          Building a Legacy with <span class="brand-text-premium text-4xl sm:text-5xl">RCM KD GROUP</span>
-        </h2>
-        <p class="text-base leading-relaxed text-ink/70 mb-4">Since our inception, RCM KD Group has grown from a small distribution network into a trusted name in direct selling. We believe that good products and honest relationships can transform lives.</p>
-        <p class="text-base leading-relaxed text-ink/70">Today, our catalogue spans food, health, beauty, home essentials, and fashion — served through a network of passionate entrepreneurs across India.</p>
-      </div>
-      <div class="grid grid-cols-2 gap-6">
-        <!-- Cards -->
-        <div class="bg-mist p-6 rounded-3xl shadow-soft hover:shadow-glow hover:-translate-y-2 transition duration-300 reveal border border-white">
-          <div class="h-12 w-12 bg-brand/10 rounded-2xl flex items-center justify-center mb-4"><i data-lucide="target" class="h-6 w-6 text-brand"></i></div>
-          <h3 class="text-lg font-bold text-ink">Our Mission</h3>
-          <p class="mt-2 text-sm text-ink/60">Make premium wellness accessible to every household while creating sustainable income.</p>
-        </div>
-        <div class="bg-mist p-6 rounded-3xl shadow-soft hover:shadow-glow hover:-translate-y-2 transition duration-300 reveal border border-white" style="transition-delay: 100ms;">
-          <div class="h-12 w-12 bg-brand/10 rounded-2xl flex items-center justify-center mb-4"><i data-lucide="eye" class="h-6 w-6 text-brand"></i></div>
-          <h3 class="text-lg font-bold text-ink">Our Vision</h3>
-          <p class="mt-2 text-sm text-ink/60">A world where entrepreneurship and well-being go hand in hand.</p>
-        </div>
-        <div class="bg-mist p-6 rounded-3xl shadow-soft hover:shadow-glow hover:-translate-y-2 transition duration-300 reveal border border-white" style="transition-delay: 200ms;">
-          <div class="h-12 w-12 bg-brand/10 rounded-2xl flex items-center justify-center mb-4"><i data-lucide="heart" class="h-6 w-6 text-brand"></i></div>
-          <h3 class="text-lg font-bold text-ink">Our Values</h3>
-          <p class="mt-2 text-sm text-ink/60">Integrity, transparency, and customer-first thinking guide us.</p>
-        </div>
-        <div class="bg-mist p-6 rounded-3xl shadow-soft hover:shadow-glow hover:-translate-y-2 transition duration-300 reveal border border-white" style="transition-delay: 300ms;">
-          <div class="h-12 w-12 bg-brand/10 rounded-2xl flex items-center justify-center mb-4"><i data-lucide="users" class="h-6 w-6 text-brand"></i></div>
-          <h3 class="text-lg font-bold text-ink">Our Community</h3>
-          <p class="mt-2 text-sm text-ink/60">Over 10,000 active associates and Star Leaders growing together.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= PRODUCTS ================= -->
 <section id="products" class="py-24 bg-mist relative">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="text-center reveal mb-16">
       <span class="text-xs font-bold uppercase tracking-widest text-brand bg-brand/10 px-3 py-1 rounded-full mb-2 inline-block">Catalog</span>
       <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Our Premium Products</h2>
+      <p class="mt-2 text-ink/60 text-sm">Exact MRP, Selling Price & PV of RCM Products.</p>
     </div>
-    <div id="products-grid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
+    <div id="products-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
   </div>
 </section>
 
-<!-- ================= LEADERS ================= -->
-<section id="leaders" class="py-24 bg-white">
+<!-- ================= GOODDOT RASAI (RECIPE SECTION) ================= -->
+<section id="recipes" class="py-24 bg-white relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand bg-brand/10 px-3 py-1 rounded-full mb-2 inline-block">Gooddot Rasoi</span>
+      <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Recipe Book</h2>
+      <p class="mt-2 text-ink/60 text-sm max-w-2xl mx-auto">स्वाद, सीख और सफलता की नई पहचान। Explore delicious and healthy recipes made with Gooddot & RCM products.</p>
+    </div>
+    
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Recipe 1 -->
+      <div class="bg-mist rounded-3xl overflow-hidden shadow-soft hover:shadow-glow transition duration-300 reveal border border-ink/5">
+        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&h=400&fit=crop&q=80" alt="Chola Curry" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-ink mb-2">करी पेस्ट छोला करी</h3>
+          <p class="text-xs font-bold text-brand mb-4">Prep: 15 Mins | Serves: 2-4</p>
+          <button onclick="openRecipe('chola')" class="w-full bg-brand text-white font-bold py-2 rounded-xl hover:bg-brand-dark transition">View Recipe</button>
+        </div>
+      </div>
+      
+      <!-- Recipe 2 -->
+      <div class="bg-mist rounded-3xl overflow-hidden shadow-soft hover:shadow-glow transition duration-300 reveal border border-ink/5" style="transition-delay: 100ms;">
+        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&h=400&fit=crop&q=80" alt="Chinese Noodles Bhel" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-ink mb-2">चाइनीज नूडल्स भेल</h3>
+          <p class="text-xs font-bold text-brand mb-4">Prep: 20-25 Mins | Serves: 4-5</p>
+          <button onclick="openRecipe('bhel')" class="w-full bg-brand text-white font-bold py-2 rounded-xl hover:bg-brand-dark transition">View Recipe</button>
+        </div>
+      </div>
+
+      <!-- Recipe 3 (Placeholder for more) -->
+      <div class="bg-mist rounded-3xl overflow-hidden shadow-soft hover:shadow-glow transition duration-300 reveal border border-ink/5" style="transition-delay: 200ms;">
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&q=80" alt="Veg Bites" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-ink mb-2">वेज बाइट्स रेसिपी</h3>
+          <p class="text-xs font-bold text-brand mb-4">High Protein | Serves: 2</p>
+          <button onclick="openRecipe('veg')" class="w-full bg-brand text-white font-bold py-2 rounded-xl hover:bg-brand-dark transition">View Recipe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAR LEADERS ================= -->
+<section id="leaders" class="py-24 bg-mist">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="text-center reveal mb-16">
       <span class="text-xs font-bold uppercase tracking-widest text-brand bg-brand/10 px-3 py-1 rounded-full mb-2 inline-block">Leadership</span>
@@ -255,8 +249,33 @@
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-ink text-white/70 pt-20 pb-10 border-t-4 border-gold">
+<!-- ================= OUR TEAM MEMBERS ================= -->
+<section id="team" class="py-24 bg-white relative">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <div class="flex flex-col md:flex-row justify-between items-center mb-12 reveal">
+      <div class="text-center md:text-left mb-6 md:mb-0">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand bg-brand/10 px-3 py-1 rounded-full mb-2 inline-block">Our People</span>
+        <h2 class="text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Our Team Members</h2>
+      </div>
+      
+      <!-- Bulk Actions -->
+      <div class="flex gap-4">
+        <button onclick="callAllTeam()" class="flex items-center gap-2 bg-brand text-white px-5 py-3 rounded-xl font-bold hover:bg-brand-dark transition shadow-lg">
+          <i data-lucide="phone-call" class="h-5 w-5"></i> Call All
+        </button>
+        <button onclick="smsAllTeam()" class="flex items-center gap-2 bg-gold text-white px-5 py-3 rounded-xl font-bold hover:bg-gold-dark transition shadow-lg">
+          <i data-lucide="message-square" class="h-5 w-5"></i> SMS All
+        </button>
+      </div>
+    </div>
+
+    <div id="team-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT / FOOTER ================= -->
+<footer id="contact" class="bg-ink text-white/70 pt-20 pb-10 border-t-4 border-gold">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 mb-16">
       
@@ -266,11 +285,6 @@
           <h2 class="brand-text-premium text-3xl">RCM KD GROUP</h2>
         </a>
         <p class="text-sm leading-relaxed mb-6">Premium products, honest relationships, and a community that grows together. Your partner in everyday wellness and lifestyle.</p>
-        <div class="flex gap-3">
-          <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-white transition"><i data-lucide="facebook" class="h-4 w-4"></i></a>
-          <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-white transition"><i data-lucide="instagram" class="h-4 w-4"></i></a>
-          <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-white transition"><i data-lucide="youtube" class="h-4 w-4"></i></a>
-        </div>
       </div>
       
       <div>
@@ -278,8 +292,9 @@
         <ul class="space-y-3">
           <li><a href="#about" class="hover:text-gold transition">About Us</a></li>
           <li><a href="#products" class="hover:text-gold transition">Our Products</a></li>
+          <li><a href="#recipes" class="hover:text-gold transition">Recipes</a></li>
           <li><a href="#leaders" class="hover:text-gold transition">Star Leaders</a></li>
-          <li><a href="#contact" class="hover:text-gold transition">Contact Us</a></li>
+          <li><a href="#team" class="hover:text-gold transition">Team Members</a></li>
         </ul>
       </div>
       
@@ -287,19 +302,16 @@
         <h3 class="text-white font-bold mb-6 text-lg">Account & Policies</h3>
         <ul class="space-y-3">
           <li><button onclick="openModal('authModal')" class="hover:text-gold transition">Login / Register</button></li>
-          <li><button onclick="openInfoModal('Privacy Policy')" class="hover:text-gold transition">Privacy Policy</button></li>
-          <li><button onclick="openInfoModal('Terms & Conditions')" class="hover:text-gold transition">Terms & Conditions</button></li>
-          <li><button onclick="openInfoModal('Return Policy')" class="hover:text-gold transition">Return Policy</button></li>
           <li><button onclick="openModal('adminModal')" class="hover:text-gold transition">Admin Login</button></li>
         </ul>
       </div>
 
       <div>
-        <h3 class="text-white font-bold mb-6 text-lg">Contact Info</h3>
+        <h3 class="text-white font-bold mb-6 text-lg">Contact Us</h3>
         <ul class="space-y-4">
-          <li class="flex items-start gap-3"><i data-lucide="map-pin" class="h-5 w-5 text-gold shrink-0"></i> Ranchi, Jharkhand, India</li>
-          <li class="flex items-center gap-3"><i data-lucide="phone" class="h-5 w-5 text-gold shrink-0"></i> +91 98765 43210</li>
-          <li class="flex items-center gap-3"><i data-lucide="mail" class="h-5 w-5 text-gold shrink-0"></i> support@rcmkdgroup.com</li>
+          <li class="flex items-start gap-3"><i data-lucide="map-pin" class="h-5 w-5 text-gold shrink-0"></i> DMP Business Pvt Ltd, Uttar Pradesh, India</li>
+          <li class="flex items-center gap-3"><i data-lucide="phone" class="h-5 w-5 text-gold shrink-0"></i> 9919559898</li>
+          <li class="flex items-center gap-3"><i data-lucide="mail" class="h-5 w-5 text-gold shrink-0"></i> support@dmpbusiness.com</li>
         </ul>
       </div>
 
@@ -307,64 +319,49 @@
     
     <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
       <p>© <span id="year"></span> RCM KD Group. All rights reserved.</p>
-      <div class="flex gap-4">
-        <button onclick="openInfoModal('404 Error Page')" class="hover:text-gold transition">404 Page</button>
-        <span>|</span>
-        <p>Made with ❤️ for Premium Business</p>
-      </div>
     </div>
   </div>
 </footer>
 
-<!-- ================= ALL MODALS (MERGED PAGES) ================= -->
+<!-- ================= ALL MODALS ================= -->
 
-<!-- 1. Auth Modal (Login / Register / Forgot Password) -->
+<!-- Auth Modal -->
 <div id="authModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4">
-  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden modal-anim relative">
+  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden modal-anim relative max-h-[90vh] overflow-y-auto">
     <button onclick="closeModal('authModal')" class="absolute top-4 right-4 text-ink/50 hover:text-red-500 z-10"><i data-lucide="x" class="h-6 w-6"></i></button>
-    
-    <!-- Tabs -->
-    <div class="flex border-b border-ink/10">
+    <div class="flex border-b border-ink/10 sticky top-0 bg-white z-10">
       <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 py-4 font-bold text-brand border-b-2 border-brand transition">Login</button>
       <button onclick="switchAuthTab('register')" id="tab-register" class="flex-1 py-4 font-bold text-ink/50 border-b-2 border-transparent hover:text-ink transition">Register</button>
     </div>
-
     <div class="p-8">
-      <!-- Login Form -->
       <form id="form-login" onsubmit="handleForm(event, 'Login Successful!')">
-        <h3 class="text-2xl font-bold mb-6 text-ink">Welcome Back</h3>
-        <input type="email" placeholder="Email Address" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-4 focus:ring-2 focus:ring-brand outline-none">
-        <input type="password" placeholder="Password" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-2 focus:ring-2 focus:ring-brand outline-none">
-        <div class="flex justify-end mb-6">
-          <button type="button" onclick="openInfoModal('Reset Password')" class="text-xs text-brand font-semibold hover:underline">Forgot Password?</button>
-        </div>
+        <h3 class="text-2xl font-bold mb-6 text-ink">User Login</h3>
+        <input type="text" placeholder="Mobile Number" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-4 focus:ring-2 focus:ring-brand outline-none">
+        <input type="password" placeholder="Password" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-6 focus:ring-2 focus:ring-brand outline-none">
         <button type="submit" class="w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-brand-dark transition shadow-lg">Login</button>
       </form>
-
-      <!-- Register Form -->
       <form id="form-register" class="hidden" onsubmit="handleForm(event, 'Registration Successful! Please Login.')">
-        <h3 class="text-2xl font-bold mb-6 text-ink">Create Account</h3>
+        <h3 class="text-2xl font-bold mb-6 text-ink">User Registration</h3>
         <input type="text" placeholder="Full Name" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-4 focus:ring-2 focus:ring-brand outline-none">
-        <input type="email" placeholder="Email Address" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-4 focus:ring-2 focus:ring-brand outline-none">
+        <input type="text" placeholder="Mobile Number" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-4 focus:ring-2 focus:ring-brand outline-none">
+        <input type="email" placeholder="Email Address" class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-4 focus:ring-2 focus:ring-brand outline-none">
         <input type="password" placeholder="Password" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 mb-6 focus:ring-2 focus:ring-brand outline-none">
-        <button type="submit" class="w-full bg-gold text-white font-bold py-3 rounded-xl hover:bg-gold-dark transition shadow-lg">Register Now</button>
+        <button type="submit" class="w-full bg-gold text-white font-bold py-3 rounded-xl hover:bg-gold-dark transition shadow-lg">Register</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- 2. Cart & Billing Modal -->
+<!-- Cart Modal -->
 <div id="cartModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4">
   <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden modal-anim flex flex-col max-h-[90vh]">
     <div class="flex justify-between items-center p-6 border-b border-ink/10 bg-mist">
       <h3 class="text-xl font-bold text-ink flex items-center gap-2"><i data-lucide="shopping-bag" class="h-5 w-5 text-brand"></i> Your Cart</h3>
       <button onclick="closeModal('cartModal')" class="text-ink/50 hover:text-red-500"><i data-lucide="x" class="h-6 w-6"></i></button>
     </div>
-    
     <div class="p-6 overflow-y-auto flex-1">
       <div id="cart-items" class="space-y-4"></div>
     </div>
-
     <div class="p-6 border-t border-ink/10 bg-mist">
       <div class="flex justify-between items-center mb-4 text-lg font-bold">
         <span>Total Amount:</span>
@@ -375,27 +372,51 @@
   </div>
 </div>
 
-<!-- 3. Billing Form Modal -->
+<!-- Billing Modal -->
 <div id="billingModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4">
-  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden modal-anim">
-    <div class="flex justify-between items-center p-6 border-b border-ink/10 bg-mist">
-      <h3 class="text-xl font-bold text-ink flex items-center gap-2"><i data-lucide="credit-card" class="h-5 w-5 text-brand"></i> Billing Details</h3>
+  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden modal-anim max-h-[90vh] overflow-y-auto">
+    <div class="flex justify-between items-center p-6 border-b border-ink/10 bg-mist sticky top-0 z-10">
+      <h3 class="text-xl font-bold text-ink flex items-center gap-2"><i data-lucide="file-text" class="h-5 w-5 text-brand"></i> Billing / Invoice</h3>
       <button onclick="closeModal('billingModal')" class="text-ink/50 hover:text-red-500"><i data-lucide="x" class="h-6 w-6"></i></button>
     </div>
     <form onsubmit="handleCheckout(event)" class="p-6 space-y-4">
-      <input type="text" placeholder="Full Name" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
-      <input type="text" placeholder="Shipping Address" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
-      <input type="tel" placeholder="Phone Number" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
-      <div class="flex gap-4">
-        <input type="text" placeholder="Pincode" required class="w-1/2 bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
-        <input type="text" placeholder="City" required class="w-1/2 bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
+      <div>
+        <label class="block text-sm font-bold text-ink mb-1">Customer Name:</label>
+        <input type="text" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
       </div>
-      <button type="submit" class="w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-brand-dark transition shadow-lg mt-2">Place Order</button>
+      <div>
+        <label class="block text-sm font-bold text-ink mb-1">Product Name:</label>
+        <input type="text" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
+      </div>
+      <div class="flex gap-4">
+        <div class="w-1/2">
+          <label class="block text-sm font-bold text-ink mb-1">Quantity:</label>
+          <input type="number" required min="1" value="1" class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
+        </div>
+        <div class="w-1/2">
+          <label class="block text-sm font-bold text-ink mb-1">Price/Unit (₹):</label>
+          <input type="number" step="0.01" required class="w-full bg-mist border border-ink/10 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand outline-none">
+        </div>
+      </div>
+      <button type="submit" class="w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-brand-dark transition shadow-lg mt-4">Generate Bill</button>
     </form>
   </div>
 </div>
 
-<!-- 4. Admin Login Modal -->
+<!-- Recipe Modal -->
+<div id="recipeModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4">
+  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden modal-anim max-h-[90vh] flex flex-col">
+    <div class="flex justify-between items-center p-6 border-b border-ink/10 bg-brand text-white">
+      <h3 id="recipe-title" class="text-xl font-bold">Recipe Name</h3>
+      <button onclick="closeModal('recipeModal')" class="text-white/70 hover:text-white"><i data-lucide="x" class="h-6 w-6"></i></button>
+    </div>
+    <div class="p-6 overflow-y-auto flex-1 text-ink/80 text-sm leading-relaxed" id="recipe-content">
+      <!-- Recipe content injected here -->
+    </div>
+  </div>
+</div>
+
+<!-- Admin Login Modal -->
 <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4">
   <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden modal-anim">
     <div class="flex justify-between items-center p-6 border-b border-ink/10 bg-ink text-white">
@@ -410,39 +431,128 @@
   </div>
 </div>
 
-<!-- 5. Universal Info Modal (Terms, Privacy, 404, Forgot Password) -->
-<div id="infoModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-ink/80 backdrop-blur-sm p-4">
-  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden modal-anim">
-    <div class="flex justify-between items-center p-6 border-b border-ink/10 bg-mist">
-      <h3 id="info-title" class="text-xl font-bold text-ink">Title</h3>
-      <button onclick="closeModal('infoModal')" class="text-ink/50 hover:text-red-500"><i data-lucide="x" class="h-6 w-6"></i></button>
-    </div>
-    <div class="p-8 text-ink/70 text-sm leading-relaxed">
-      <p id="info-content">Content goes here...</p>
-    </div>
-    <div class="p-4 bg-mist border-t border-ink/10 text-right">
-      <button onclick="closeModal('infoModal')" class="bg-brand text-white px-6 py-2 rounded-lg font-bold hover:bg-brand-dark transition">Close</button>
-    </div>
-  </div>
-</div>
-
 <script>
-/* ============ DATA ============ */
+/* ============ PRODUCT DATA (From Screenshot) ============ */
 const products = [
-  { id: 'p1', name: 'Nysa Foot Cream', category: 'Personal Care', price: 199, image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=600&fit=crop&q=80' },
-  { id: 'p2', name: 'Nutricharge Kesar Pista', category: 'Health & Wellness', price: 450, image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop&q=80' },
-  { id: 'p3', name: 'Swechha Popular Tea', category: 'Food & Grocery', price: 275, image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&h=600&fit=crop&q=80' },
-  { id: 'p4', name: 'KeySoul Hair Serum', category: 'Beauty Products', price: 349, image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=600&fit=crop&q=80' },
-  { id: 'p5', name: 'Herbal Face Wash', category: 'Personal Care', price: 149, image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=600&fit=crop&q=80' },
-  { id: 'p6', name: 'Organic Honey 500g', category: 'Food & Grocery', price: 399, image: 'https://images.unsplash.com/photo-1587049354704-fc4b1d6d1d2f?w=600&h=600&fit=crop&q=80' },
+  { id: 'p1', name: 'Nutricharge All Pro Plant Protein Powder, 300 g', category: 'Protein', mrp: 1080, sp: 864, pv: 648, image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&h=400&fit=crop&q=80', desc: 'High quality plant protein for muscle building and recovery.' },
+  { id: 'p2', name: 'Nutricharge View Junior Gummies', category: 'Kids Health', mrp: 600, sp: 480, pv: 360, image: 'https://images.unsplash.com/photo-1550572017-edf79435d0e4?w=400&h=400&fit=crop&q=80', desc: 'Essential nutrients for growing kids in tasty gummy form.' },
+  { id: 'p3', name: 'Trikara Madhu Samyam Ras, 250 ml', category: 'Ayurveda', mrp: 150, sp: 120, pv: 72, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop&q=80', desc: 'Ayurvedic juice to help manage blood sugar levels naturally.' },
+  { id: 'p4', name: 'Nutricharge Cocoa Product', category: 'Health Drink', mrp: 999, sp: 801, pv: 675, image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop&q=80', desc: 'Rich chocolate health drink loaded with daily essential vitamins.' },
+  { id: 'p5', name: 'Nutricharge Berry Blast Refresher, 200 ml', category: 'Energy Drink', mrp: 64, sp: 51, pv: 42, image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=400&fit=crop&q=80', desc: 'Instant energy refresher with mixed berry flavor.' },
+  { id: 'p6', name: 'Nutricharge Pomegranate Refresher, 200 ml', category: 'Energy Drink', mrp: 64, sp: 51, pv: 42, image: 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=400&h=400&fit=crop&q=80', desc: 'Refreshing pomegranate drink packed with antioxidants.' },
+  { id: 'p7', name: 'Nutricharge Orange Refresher, 200 ml', category: 'Energy Drink', mrp: 64, sp: 51, pv: 42, image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=400&h=400&fit=crop&q=80', desc: 'Tangy orange energy drink to keep you active all day.' },
+  { id: 'p8', name: 'Nutricharge Man', category: 'Health Supplement', mrp: 399, sp: 320, pv: 270, image: 'https://images.unsplash.com/photo-1616679911234-81a31c5a1a4b?w=400&h=400&fit=crop&q=80', desc: 'Daily health supplement tailored for men\'s nutritional needs.' },
+  { id: 'p9', name: 'Nutricharge Woman', category: 'Health Supplement', mrp: 555, sp: 392, pv: 330, image: 'https://images.unsplash.com/photo-1550572017-edf79435d0e4?w=400&h=400&fit=crop&q=80', desc: 'Complete nutritional support for women with 50+ nutrients.' },
+  { id: 'p10', name: 'Nutricharge Strawberry Product', category: 'Health Drink', mrp: 999, sp: 801, pv: 675, image: 'https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=400&h=400&fit=crop&q=80', desc: 'Delicious strawberry flavored health drink mix.' },
+  { id: 'p11', name: 'Nutricharge Veg Omega', category: 'Health Supplement', mrp: 355, sp: 285, pv: 240, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop&q=80', desc: 'Plant-based Omega-3, 6, 9 for heart and brain health.' },
+  { id: 'p12', name: 'Health Guard Gamma Oryzanol Capsules, 60 Cap', category: 'Health Supplement', mrp: 810, sp: 510, pv: 383, image: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&h=400&fit=crop&q=80', desc: 'Helps in managing cholesterol levels effectively.' },
+  { id: 'p13', name: 'Nutricharge Kesar Pista Product, 200 g', category: 'Health Drink', mrp: 960, sp: 769, pv: 648, image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop&q=80', desc: 'Royal Kesar Pista health drink for immunity and energy.' },
+  { id: 'p14', name: 'Trikara Madhu Samyam Ras, 1 ltr', category: 'Ayurveda', mrp: 498, sp: 410, pv: 260, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop&q=80', desc: 'Family pack of Ayurvedic sugar management juice.' },
+  { id: 'p15', name: 'Nutricharge DHA Twist', category: 'Health Supplement', mrp: 399, sp: 320, pv: 270, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop&q=80', desc: 'DHA supplement for brain and eye development.' },
+  { id: 'p16', name: 'Nutricharge Product Shake, Coffee Hazelnut, 200 g', category: 'Protein', mrp: 888, sp: 712, pv: 600, image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&h=400&fit=crop&q=80', desc: 'Tasty coffee hazelnut protein shake for meal replacement.' },
+  { id: 'p17', name: 'Nutricharge View', category: 'Health Supplement', mrp: 604, sp: 484, pv: 408, image: 'https://images.unsplash.com/photo-1616679911234-81a31c5a1a4b?w=400&h=400&fit=crop&q=80', desc: 'Advanced eye health supplement with Lutein and Zeaxanthin.' },
+  { id: 'p18', name: 'Nutricharge BJ Combo Pack', category: 'Combo', mrp: 3111, sp: 2492, pv: 2100, image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop&q=80', desc: 'Joint health combo pack for complete bone and joint care.' },
+  { id: 'p19', name: 'Trikara Pain Balm, 15 g', category: 'Ayurveda', mrp: 60, sp: 45, pv: 27, image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop&q=80', desc: 'Fast relief from body ache, joint pain and headaches.' },
+  { id: 'p20', name: 'Trikara Pain Gel, 30 g', category: 'Ayurveda', mrp: 90, sp: 72, pv: 45, image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop&q=80', desc: 'Cooling gel for muscle sprains and joint pain relief.' },
+  { id: 'p21', name: 'Nutricharge DHA 200', category: 'Health Supplement', mrp: 799, sp: 641, pv: 540, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=400&fit=crop&q=80', desc: 'High potency DHA supplement for cognitive health.' },
+  { id: 'p22', name: 'Trikara Panch Tulsi Drop, 30 ml', category: 'Ayurveda', mrp: 173, sp: 141, pv: 89, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop&q=80', desc: 'Five types of Tulsi extracts for immunity and respiratory health.' },
+  { id: 'p23', name: 'Trikara Giloy Tulsi Navras, 1 ltr', category: 'Ayurveda', mrp: 263, sp: 211, pv: 113, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop&q=80', desc: 'Immunity boosting Ayurvedic juice with Giloy and Tulsi.' },
+  { id: 'p24', name: 'Nutricharge Glycem Tab', category: 'Health Supplement', mrp: 875, sp: 623, pv: 525, image: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&h=400&fit=crop&q=80', desc: 'Tablets to support healthy blood sugar levels.' },
+  { id: 'p25', name: 'Nutricharge Gainer, 500 g', category: 'Protein', mrp: 1405, sp: 1125, pv: 900, image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=400&h=400&fit=crop&q=80', desc: 'Weight gainer with high protein and complex carbs.' },
+  { id: 'p26', name: 'Nutricharge Glycem Product, 500 g', category: 'Health Drink', mrp: 1600, sp: 1281, pv: 1080, image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop&q=80', desc: 'Nutritional powder to manage blood glucose levels.' },
+  { id: 'p27', name: 'Nutricharge BioAge', category: 'Health Supplement', mrp: 1500, sp: 1068, pv: 900, image: 'https://images.unsplash.com/photo-1616679911234-81a31c5a1a4b?w=400&h=400&fit=crop&q=80', desc: 'Anti-aging supplement to keep you fit and energetic.' },
+  { id: 'p28', name: 'Nutricharge Kids Mango, 300 g', category: 'Kids Health', mrp: 711, sp: 569, pv: 480, image: 'https://images.unsplash.com/photo-1550572017-edf79435d0e4?w=400&h=400&fit=crop&q=80', desc: 'Mango flavored health drink for kids\' overall growth.' },
+  { id: 'p29', name: 'Trikara Aloe Vera, Amla, Seabuckthorn Ras, 1 ltr', category: 'Ayurveda', mrp: 263, sp: 211, pv: 113, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=400&fit=crop&q=80', desc: 'Detox juice for gut health and glowing skin.' },
+  { id: 'p30', name: 'Trikara Prash Awaleh, 500 g', category: 'Ayurveda', mrp: 217, sp: 175, pv: 111, image: 'https://images.unsplash.com/photo-1587049354704-fc4b1d6d1d2f?w=400&h=400&fit=crop&q=80', desc: 'Ayurvedic immunity booster for all ages.' }
 ];
 
-  const leaders = [
-  { name: 'MR. KAPILDEV GUPTA', rank: 'Technical', photo: 'papaji.png' },
+/* ============ LEADERS DATA ============ */
+const leaders = [
+  { name: 'Priya Sharma', rank: 'Star Diamond', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80' },
   { name: 'Arjun Mehta', rank: 'Star Sapphire', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&q=80' },
   { name: 'Neha Kapoor', rank: 'Star Ruby', photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&q=80' },
   { name: 'Vikram Singh', rank: 'Star Diamond', photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&q=80' },
 ];
+
+/* ============ TEAM DATA ============ */
+const team = [
+  { name: 'Pawan Sahu', role: 'Founder & CEO', phone: '9919559898', photo: 'https://ui-avatars.com/api/?name=Pawan+Sahu&background=0F766E&color=fff&size=128&bold=true' },
+  { name: 'Rahul Kumar', role: 'Operations Head', phone: '9876543210', photo: 'https://ui-avatars.com/api/?name=Rahul+Kumar&background=D4AF37&color=fff&size=128&bold=true' },
+  { name: 'Amit Singh', role: 'Sales Manager', phone: '9123456789', photo: 'https://ui-avatars.com/api/?name=Amit+Singh&background=115E59&color=fff&size=128&bold=true' }
+];
+
+/* ============ RECIPE DATA ============ */
+const recipes = {
+  chola: {
+    title: 'करी पेस्ट छोला करी',
+    content: `
+      <p class="mb-4 text-brand font-bold">Prep Time: 15 mins | Serves: 2-4 People</p>
+      <h4 class="font-bold text-ink mb-2">सामग्री (Ingredients):</h4>
+      <ul class="list-disc pl-5 mb-4 space-y-1">
+        <li>Gooddot करी पेस्ट - 1 पैकेट</li>
+        <li>छोला (काबुली चना) - 200 ग्राम</li>
+        <li>सब्जी मसाला - 1 छोटा चम्मच</li>
+        <li>हींग - आधा छोटा चम्मच</li>
+        <li>टोमैटो केचप - 10 ग्राम</li>
+        <li>लाल मिर्च पाउडर - आधा छोटा चम्मच</li>
+        <li>तेल - 40 मि.ली.</li>
+        <li>प्याज, टमाटर, हरा धनिया (बारीक कटा हुआ)</li>
+      </ul>
+      <h4 class="font-bold text-ink mb-2">विधि (Method):</h4>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>एक कढ़ाई में तेल गर्म करें और कटा हुआ प्याज सुनहरा होने तक फ्राई करें।</li>
+        <li>करी पेस्ट को 150 मि.ली. पानी में घोलें और कढ़ाई में डालकर भूनें।</li>
+        <li>इसमें टोमैटो केचप और सभी मसाले डालकर तब तक भूनें जब तक तेल अलग न हो जाए।</li>
+        <li>उबले हुए छोलों को डालें और कुछ देर पकाएँ।</li>
+        <li>ऊपर से प्याज, टमाटर और हरा धनिया डालकर गरमागरम सर्व करें।</li>
+      </ol>
+    `
+  },
+  bhel: {
+    title: 'चाइनीज नूडल्स भेल',
+    content: `
+      <p class="mb-4 text-brand font-bold">Prep Time: 20-25 mins | Serves: 4-5 People</p>
+      <h4 class="font-bold text-ink mb-2">सामग्री (Ingredients):</h4>
+      <ul class="list-disc pl-5 mb-4 space-y-1">
+        <li>Gooddot नूडल्स - 2 पैकेट</li>
+        <li>तेल (तलने के लिए)</li>
+        <li>शेजवान चटनी - 80 ग्राम</li>
+        <li>टोमैटो केचप - 60 ग्राम</li>
+        <li>चाट मसाला - 1 छोटा चम्मच</li>
+        <li>कॉन्स्टाच (अरारोट) - 100 ग्राम</li>
+        <li>पत्तागोभी, टमाटर, हरा प्याज, हरी मिर्च, चुकंदर (कटी हुई)</li>
+      </ul>
+      <h4 class="font-bold text-ink mb-2">विधि (Method):</h4>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>नूडल्स को 80% तक उबालें, छान लें और ठंडा करें। इसमें तेल और अरारोट मिलाएँ।</li>
+        <li>कढ़ाई में तेल गर्म करें और नूडल्स को कुरकुरा होने तक डीप फ्राई करें।</li>
+        <li>एक बाउल में सभी कटी सब्जियां, शेजवान चटनी, केचप, चाट मसाला और नमक मिलाएँ।</li>
+        <li>तले हुए नूडल्स को छोटे टुकड़ों में तोड़कर मिश्रण में मिलाएँ।</li>
+        <li>ऊपर से हरा धनिया डालकर तुरंत परोसें।</li>
+      </ol>
+    `
+  },
+  veg: {
+    title: 'वेज बाइट्स रेसिपी',
+    content: `
+      <p class="mb-4 text-brand font-bold">High Protein | Serves: 2 People</p>
+      <h4 class="font-bold text-ink mb-2">सामग्री (Ingredients):</h4>
+      <ul class="list-disc pl-5 mb-4 space-y-1">
+        <li>Gooddot वेज बाइट्स - 1 पैकेट</li>
+        <li>तेल - 2 छोटे चम्मच</li>
+        <li>प्याज, टमाटर, शिमला मिर्च (कटी हुई)</li>
+        <li>नमक और मसाले स्वादानुसार</li>
+      </ul>
+      <h4 class="font-bold text-ink mb-2">विधि (Method):</h4>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>पैन में तेल गर्म करें और सब्जियों को हल्का सॉते करें।</li>
+        <li>वेज बाइट्स पैकेट को खोलकर सब्जियों में मिलाएँ।</li>
+        <li>2-3 मिनट तक पकाएँ जब तक कि यह पूरी तरह गर्म न हो जाए।</li>
+        <li>गरमागरम सर्व करें।</li>
+      </ol>
+    `
+  }
+};
 
 /* ============ STATE & LOGIC ============ */
 let cart = JSON.parse(localStorage.getItem('rcm_cart')) || [];
@@ -452,17 +562,31 @@ function refreshIcons() { if (window.lucide) lucide.createIcons(); }
 /* --- RENDER PRODUCTS --- */
 function renderProducts() {
   document.getElementById('products-grid').innerHTML = products.map(p => `
-    <div class="group rounded-3xl bg-white p-4 shadow-soft hover:shadow-glow transition duration-300 reveal border border-ink/5 flex flex-col justify-between">
-      <div class="aspect-square overflow-hidden rounded-2xl bg-mist relative">
-        <img src="${p.image}" alt="${p.name}" class="h-full w-full object-cover group-hover:scale-110 transition duration-700" loading="lazy" />
+    <div class="group rounded-3xl bg-white p-3 shadow-soft hover:shadow-glow transition duration-300 reveal border border-ink/5 flex flex-col justify-between">
+      
+      <!-- Product Image -->
+      <div class="aspect-square overflow-hidden rounded-2xl bg-mist relative mb-3">
+        <img src="${p.image}" alt="${p.name}" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-          <button onclick="addToCart('${p.id}')" class="bg-gold text-white font-bold px-6 py-2 rounded-full hover:bg-gold-dark transform translate-y-4 group-hover:translate-y-0 transition">Add to Cart</button>
+          <button onclick="addToCart('${p.id}')" class="bg-gold text-white font-bold px-6 py-2 rounded-full hover:bg-gold-dark transform translate-y-4 group-hover:translate-y-0 transition shadow-lg text-sm">Add to Cart</button>
         </div>
       </div>
-      <div class="mt-4 text-center">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-brand">${p.category}</span>
-        <h3 class="mt-1 text-lg font-extrabold text-ink">${p.name}</h3>
-        <p class="text-brand font-bold mt-1">₹${p.price}</p>
+
+      <!-- Product Details -->
+      <div class="flex flex-col flex-1">
+        <span class="text-[9px] font-bold uppercase tracking-widest text-brand mb-1">${p.category}</span>
+        <h3 class="text-sm font-bold text-ink leading-tight mb-2 line-clamp-2">${p.name}</h3>
+        
+        <!-- Prices -->
+        <div class="mt-auto flex items-end justify-between">
+          <div>
+            <p class="text-[10px] text-ink/50 line-through">M.R.P: ₹${p.mrp}</p>
+            <p class="text-base font-extrabold text-brand leading-none">₹${p.sp}</p>
+          </div>
+          <div class="text-right bg-gold/10 px-2 py-1 rounded">
+            <p class="text-[9px] font-bold text-gold-dark">PV: ${p.pv}</p>
+          </div>
+        </div>
       </div>
     </div>`).join('');
 }
@@ -470,7 +594,7 @@ function renderProducts() {
 /* --- RENDER LEADERS --- */
 function renderLeaders() {
   document.getElementById('leaders-grid').innerHTML = leaders.map(l => `
-    <div class="group flex flex-col items-center rounded-3xl bg-mist p-6 text-center shadow-sm hover:shadow-card transition duration-300 reveal border border-ink/5">
+    <div class="group flex flex-col items-center rounded-3xl bg-white p-6 text-center shadow-sm hover:shadow-card transition duration-300 reveal border border-ink/5">
       <div class="relative h-32 w-32 overflow-hidden rounded-full ring-4 ring-gold/30 group-hover:ring-gold transition duration-300 mb-4">
         <img src="${l.photo}" alt="${l.name}" class="h-full w-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" />
       </div>
@@ -479,13 +603,61 @@ function renderLeaders() {
     </div>`).join('');
 }
 
+/* --- RENDER TEAM --- */
+function renderTeam() {
+  document.getElementById('team-grid').innerHTML = team.map(t => `
+    <div class="group flex flex-col items-center rounded-3xl bg-mist p-6 text-center shadow-soft hover:shadow-glow transition duration-300 reveal border border-ink/5">
+      <div class="relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-brand/20 group-hover:ring-gold transition duration-300 mb-4">
+        <img src="${t.photo}" alt="${t.name}" class="h-full w-full object-cover group-hover:scale-110 transition duration-500" loading="lazy" />
+      </div>
+      <h3 class="text-lg font-bold text-ink">${t.name}</h3>
+      <p class="text-xs text-brand font-bold uppercase tracking-wider mb-4">${t.role}</p>
+      
+      <div class="flex gap-2 w-full">
+        <a href="tel:+91${t.phone}" class="flex-1 bg-white text-ink font-bold py-2 rounded-lg hover:bg-brand hover:text-white transition flex justify-center items-center gap-1 text-sm shadow-sm">
+          <i data-lucide="phone" class="h-4 w-4"></i> Call
+        </a>
+        <a href="sms:+91${t.phone}" class="flex-1 bg-white text-ink font-bold py-2 rounded-lg hover:bg-gold hover:text-white transition flex justify-center items-center gap-1 text-sm shadow-sm">
+          <i data-lucide="message-square" class="h-4 w-4"></i> SMS
+        </a>
+      </div>
+    </div>`).join('');
+}
+
+/* --- BULK ACTIONS --- */
+function callAllTeam() {
+  let allNumbers = team.map(t => "+91" + t.phone).join(', ');
+  navigator.clipboard.writeText(allNumbers).then(() => {
+    alert("✅ Saare team members ke numbers copy ho gaye hain!\n\nAb aap apne phone ke dialer app me paste karke unhe call kar sakte hain ya ek group banakar call kar sakte hain.");
+  }).catch(() => {
+    alert("Numbers: " + allNumbers);
+  });
+}
+
+function smsAllTeam() {
+  let allNumbers = team.map(t => "+91" + t.phone).join(',');
+  window.location.href = `sms:${allNumbers}?body=Hello Team RCM KD Group, `;
+}
+
+/* --- RECIPE MODAL LOGIC --- */
+function openRecipe(key) {
+  const recipe = recipes[key];
+  if(!recipe) return;
+  document.getElementById('recipe-title').innerText = recipe.title;
+  document.getElementById('recipe-content').innerHTML = recipe.content;
+  openModal('recipeModal');
+}
+
 /* --- CART LOGIC --- */
 function addToCart(id) {
   const product = products.find(p => p.id === id);
   const existing = cart.find(item => item.id === id);
-  if (existing) { existing.qty += 1; } 
-  else { cart.push({ ...product, qty: 1 }); }
   
+  if (existing) { 
+    existing.qty += 1; 
+  } else { 
+    cart.push({ id: product.id, name: product.name, price: product.sp, image: product.image, qty: 1 }); 
+  }
   saveCart();
   showToast('Added to cart!');
 }
@@ -510,10 +682,10 @@ function updateCartUI() {
   } else {
     itemsDiv.innerHTML = cart.map(item => `
       <div class="flex items-center justify-between border-b border-ink/5 pb-4">
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3">
           <img src="${item.image}" class="h-12 w-12 rounded-lg object-cover">
           <div>
-            <p class="font-bold text-sm text-ink">${item.name}</p>
+            <p class="font-bold text-sm text-ink line-clamp-1">${item.name}</p>
             <p class="text-brand text-xs font-bold">₹${item.price} x ${item.qty}</p>
           </div>
         </div>
@@ -532,7 +704,7 @@ function saveCart() {
   updateCartUI();
 }
 
-/* --- MODALS LOGIC --- */
+/* --- MODALS & UI --- */
 function openModal(id) {
   document.getElementById(id).classList.remove('hidden');
   document.body.style.overflow = 'hidden';
@@ -554,20 +726,6 @@ function switchAuthTab(tab) {
   document.getElementById(`tab-${tab}`).className = 'flex-1 py-4 font-bold text-brand border-b-2 border-brand transition';
 }
 
-function openInfoModal(title) {
-  const contentMap = {
-    'Privacy Policy': 'We value your privacy. RCM KD Group collects minimal data required to process your orders. We never sell your data to third parties. All transactions are securely encrypted.',
-    'Terms & Conditions': 'By using this website, you agree to our terms of service. All content, logos, and brand names are the property of RCM KD Group and cannot be reproduced without permission.',
-    'Return Policy': 'If you receive a damaged product, please contact support@rcmkdgroup.com within 48 hours. We offer replacements or refunds as per our quality inspection.',
-    'Reset Password': 'A password reset link has been sent to your registered email address. Please check your inbox and spam folder.',
-    '404 Error Page': 'Oops! The page you are looking for does not exist. It might have been moved or deleted. But don\'t worry, you are safe on our homepage.'
-  };
-  
-  document.getElementById('info-title').textContent = title;
-  document.getElementById('info-content').textContent = contentMap[title] || 'Information not available.';
-  openModal('infoModal');
-}
-
 function openBilling() {
   closeModal('cartModal');
   openModal('billingModal');
@@ -578,7 +736,7 @@ function handleCheckout(e) {
   closeModal('billingModal');
   cart = [];
   saveCart();
-  showToast('Order Placed Successfully! Thank you.');
+  showToast('Bill Generated & Order Placed!');
 }
 
 function handleForm(e, msg) {
@@ -623,6 +781,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('year').textContent = new Date().getFullYear();
   renderProducts();
   renderLeaders();
+  renderTeam();
   updateCartUI();
   setupReveal();
   setupMobileMenu();
